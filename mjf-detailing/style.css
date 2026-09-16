@@ -37,6 +37,6 @@
 
 /* Supplied MJF logo artwork */
 .brand{line-height:0}
-.brand-logo{display:block;width:118px;height:auto;mix-blend-mode:screen}
+.brand-logo{display:block;width:118px;height:auto}
 .footer-brand .brand-logo{width:126px}
 @media(max-width:640px){.brand-logo{width:106px}.footer-brand .brand-logo{width:118px}}
