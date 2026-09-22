@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A modern redesign concept for Think Kitchen, Bathroom & Bedroom in Northallerton.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1b2522">
+  <title>Think — Kitchens, Bathrooms & Bedrooms</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231b2522'/%3E%3Cpath d='M17 18h30v4H34v26h-4V22H17z' fill='%23d3ae68'/%3E%3C/svg%3E">
+  <style>
+    @font-face { font-family: "Tenor Sans"; src: url("/think-kitchens/tenor-sans.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+    :root {
+      --ink: #18201e;
+      --forest: #1b2a25;
+      --forest-2: #263a33;
+      --paper: #f6f4ef;
+      --white: #fff;
+      --stone: #dedbd2;
+      --muted: #6e746f;
+      --gold: #caa768;
+      --gold-light: #e4cca0;
+      --line: rgba(24,32,30,.14);
+      --serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max: 1240px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .wrap { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+    .eyebrow { margin: 0 0 16px; color: var(--gold); font-size: .72rem; font-weight: 750; letter-spacing: .17em; text-transform: uppercase; }
+    .button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 12px; padding: 0 23px; border: 1px solid transparent; background: var(--gold); color: #17201d; font-size: .82rem; font-weight: 760; letter-spacing: .055em; text-decoration: none; text-transform: uppercase; transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease; }
+    .button:hover { transform: translateY(-2px); background: var(--gold-light); }
+    .button.ghost { border-color: rgba(255,255,255,.38); background: transparent; color: white; }
+    .button.ghost:hover { border-color: white; background: white; color: var(--ink); }
+    .text-link { display: inline-flex; align-items: center; gap: 12px; font-size: .8rem; font-weight: 760; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+    .text-link::after { content: "→"; color: var(--gold); font-size: 1.2rem; transition: transform .2s ease; }
+    .text-link:hover::after { transform: translateX(5px); }
+
+    .notice { background: #0f1715; color: rgba(255,255,255,.8); font-size: .72rem; letter-spacing: .09em; text-align: center; text-transform: uppercase; }
+    .notice .wrap { display: flex; min-height: 36px; align-items: center; justify-content: center; gap: 20px; }
+    .notice span + span::before { content: "•"; margin-right: 20px; color: var(--gold); }
+    .nav { position: sticky; z-index: 50; top: 0; border-bottom: 1px solid var(--line); background: rgba(246,244,239,.94); backdrop-filter: blur(14px); }
+    .nav-inner { display: grid; min-height: 86px; grid-template-columns: 245px 1fr auto; align-items: center; gap: 28px; }
+    .brand { display: inline-flex; width: fit-content; flex-direction: column; text-decoration: none; }
+    .brand-main { font-family: "Tenor Sans", var(--sans); font-size: 1.896rem; font-weight: 400; letter-spacing: .17em; line-height: .9; }
+    .brand-main i { color: var(--gold); font-style: normal; letter-spacing: 0; }
+    .brand-sub { margin-top: 9px; font-size: .49rem; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; justify-content: center; gap: clamp(18px, 2.3vw, 36px); }
+    .nav-links a { position: relative; font-size: .77rem; font-weight: 680; letter-spacing: .055em; text-decoration: none; text-transform: uppercase; }
+    .nav-links a::after { position: absolute; right: 0; bottom: -10px; left: 0; height: 1px; background: var(--gold); content: ""; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { min-height: 42px; padding-inline: 18px; }
+    .menu-toggle { display: none; width: 46px; height: 46px; border: 0; background: transparent; cursor: pointer; }
+    .menu-toggle span { display: block; width: 22px; height: 1px; margin: 6px auto; background: var(--ink); }
+
+    .hero { background: var(--forest); color: white; }
+    .hero-grid { display: grid; min-height: 680px; grid-template-columns: minmax(360px,.88fr) minmax(520px,1.38fr); }
+    .hero-copy { display: flex; align-items: center; }
+    .hero-copy-inner { width: min(550px, calc(100% - 64px)); margin-left: max(24px, calc((100vw - var(--max)) / 2)); padding: 88px 0 84px; }
+    .hero h1 { max-width: 540px; margin: 0; font-family: var(--serif); font-size: clamp(3.4rem, 5.35vw, 6.2rem); font-weight: 400; letter-spacing: -.045em; line-height: .94; }
+    .hero h1 em { color: var(--gold-light); font-style: italic; }
+    .hero-lede { max-width: 480px; margin: 28px 0 36px; color: rgba(255,255,255,.72); font-size: 1.05rem; line-height: 1.7; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-image { position: relative; min-height: 580px; overflow: hidden; }
+    .hero-image img { height: 100%; object-fit: cover; object-position: center; }
+    .hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(27,42,37,.3), transparent 28%); content: ""; pointer-events: none; }
+    .image-note { position: absolute; z-index: 2; right: 28px; bottom: 28px; max-width: 235px; padding: 18px 20px; border: 1px solid rgba(255,255,255,.36); background: rgba(16,25,22,.76); backdrop-filter: blur(10px); }
+    .image-note strong, .image-note span { display: block; }
+    .image-note strong { font-family: var(--serif); font-size: 1.45rem; font-weight: 400; }
+    .image-note span { margin-top: 3px; color: rgba(255,255,255,.67); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .trust { border-bottom: 1px solid var(--line); background: white; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .trust-item { display: flex; min-height: 124px; align-items: center; gap: 18px; padding: 22px 28px; border-right: 1px solid var(--line); }
+    .trust-item:first-child { padding-left: 0; }
+    .trust-item:last-child { border-right: 0; }
+    .trust-number { color: var(--gold); font-family: var(--serif); font-size: 2.25rem; line-height: 1; }
+    .trust-item strong, .trust-item small { display: block; }
+    .trust-item strong { font-size: .84rem; }
+    .trust-item small { margin-top: 3px; color: var(--muted); font-size: .72rem; line-height: 1.35; }
+    .trust-badge img { width: 74px; height: auto; }
+
+    .section { padding: 126px 0; }
+    .section-head { display: grid; margin-bottom: 56px; grid-template-columns: 1fr 1fr; align-items: end; gap: 80px; }
+    .section-head h2, .studio-copy h2, .process h2, .showroom h2, .contact h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.5rem, 4.2vw, 4.4rem); font-weight: 400; letter-spacing: -.035em; line-height: 1.02; }
+    .section-head p { max-width: 500px; margin: 0; color: var(--muted); }
+    .rooms { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 18px; }
+    .room { position: relative; min-height: 490px; overflow: hidden; background: #d8d8d4; color: white; }
+    .room img { height: 100%; object-fit: cover; transition: transform .75s cubic-bezier(.2,.7,.2,1); }
+    .room:hover img { transform: scale(1.035); }
+    .room::after { position: absolute; inset: 25% 0 0; background: linear-gradient(transparent, rgba(12,20,18,.78)); content: ""; }
+    .room-copy { position: absolute; z-index: 2; right: 28px; bottom: 26px; left: 28px; }
+    .room-copy span { font-size: .7rem; letter-spacing: .13em; text-transform: uppercase; }
+    .room-copy h3 { margin: 6px 0 15px; font-family: var(--serif); font-size: 2.25rem; font-weight: 400; line-height: 1; }
+    .room-copy a { color: white; }
+    .room-bedroom img { object-position: 58% center; }
+
+    .studio { background: white; }
+    .studio-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .studio-visual { position: relative; min-height: 650px; background: var(--stone); }
+    .studio-visual img { height: 100%; object-fit: cover; }
+    .studio-visual .stamp { position: absolute; top: 34px; left: 34px; display: grid; width: 122px; height: 122px; place-items: center; border-radius: 50%; background: var(--gold); color: var(--ink); font-size: .64rem; font-weight: 760; letter-spacing: .12em; text-align: center; text-transform: uppercase; transform: rotate(-8deg); }
+    .studio-copy { display: flex; align-items: center; padding: 90px clamp(48px, 7vw, 120px); background: #ece9e1; }
+    .studio-copy p { max-width: 490px; margin: 26px 0 36px; color: var(--muted); }
+    .materials { display: grid; max-width: 520px; margin-bottom: 38px; grid-template-columns: repeat(2,1fr); gap: 0 28px; border-top: 1px solid var(--line); }
+    .materials span { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: .8rem; font-weight: 680; letter-spacing: .04em; }
+
+    .process { background: var(--forest); color: white; }
+    .process-head { display: flex; margin-bottom: 64px; align-items: end; justify-content: space-between; gap: 28px; }
+    .process-head p { max-width: 440px; margin: 0; color: rgba(255,255,255,.62); }
+    .steps { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid rgba(255,255,255,.18); }
+    .step { min-height: 260px; padding: 30px 28px 0 0; border-right: 1px solid rgba(255,255,255,.18); }
+    .step + .step { padding-left: 28px; }
+    .step:last-child { border-right: 0; }
+    .step-num { color: var(--gold); font-family: var(--serif); font-size: 1.2rem; }
+    .step h3 { margin: 48px 0 13px; font-family: var(--serif); font-size: 1.7rem; font-weight: 400; }
+    .step p { margin: 0; color: rgba(255,255,255,.62); font-size: .9rem; }
+
+    .quote { padding: 104px 0; background: var(--gold-light); text-align: center; }
+    .quote-mark { color: rgba(24,32,30,.28); font-family: var(--serif); font-size: 4.5rem; line-height: .55; }
+    blockquote { max-width: 900px; margin: 28px auto 24px; font-family: var(--serif); font-size: clamp(1.8rem, 3.2vw, 3.15rem); letter-spacing: -.025em; line-height: 1.16; }
+    .quote cite { font-size: .73rem; font-style: normal; font-weight: 760; letter-spacing: .12em; text-transform: uppercase; }
+
+    .showroom { padding: 126px 0; }
+    .showroom-card { display: grid; overflow: hidden; background: white; grid-template-columns: 1.15fr .85fr; }
+    .showroom-copy { padding: clamp(44px, 6vw, 88px); }
+    .showroom-copy p { max-width: 520px; margin: 25px 0 34px; color: var(--muted); }
+    .showroom-details { display: grid; padding: 50px; align-content: center; gap: 36px; background: #d7d1c4; }
+    .detail { padding-bottom: 28px; border-bottom: 1px solid rgba(24,32,30,.2); }
+    .detail:last-child { padding-bottom: 0; border-bottom: 0; }
+    .detail span, .detail strong { display: block; }
+    .detail span { margin-bottom: 7px; font-size: .66rem; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    .detail strong { font-family: var(--serif); font-size: 1.45rem; font-weight: 400; line-height: 1.35; }
+
+    .contact { padding: 110px 0; background: #0f1715; color: white; }
+    .contact-grid { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 60px; }
+    .contact p { max-width: 620px; margin: 24px 0 0; color: rgba(255,255,255,.62); }
+    .contact-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; }
+    .footer { padding: 48px 0 30px; background: #0f1715; color: rgba(255,255,255,.58); }
+    .footer-top { display: grid; padding-top: 38px; border-top: 1px solid rgba(255,255,255,.14); grid-template-columns: 1.3fr 1fr 1fr; gap: 50px; }
+    .footer .brand { color: white; }
+    .footer p { max-width: 390px; margin: 20px 0 0; font-size: .78rem; }
+    .footer h3 { margin: 0 0 15px; color: white; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+    .footer ul { margin: 0; padding: 0; list-style: none; }
+    .footer li { margin: 7px 0; font-size: .8rem; }
+    .footer a { text-decoration: none; }
+    .footer a:hover { color: white; }
+    .legal { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); font-size: .66rem; line-height: 1.55; }
+
+    [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    [data-reveal].shown { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } [data-reveal] { opacity: 1; transform: none; } }
+
+    @media (max-width: 1040px) {
+      .nav-inner { grid-template-columns: 1fr auto; }
+      .nav-links { position: absolute; top: 86px; right: 0; left: 0; display: none; padding: 22px 24px 30px; flex-direction: column; align-items: flex-start; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 20px 40px rgba(0,0,0,.08); }
+      .nav-links.open { display: flex; }
+      .nav-cta { display: none; }
+      .menu-toggle { display: block; }
+      .hero-grid { grid-template-columns: .9fr 1.1fr; }
+      .hero-copy-inner { width: calc(100% - 48px); margin-left: 24px; }
+      .trust-grid { grid-template-columns: repeat(2,1fr); }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .trust-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .trust-item:nth-child(3) { padding-left: 0; }
+      .rooms { grid-template-columns: 1fr 1fr; }
+      .room:first-child { grid-column: 1 / -1; }
+      .studio-copy { padding-inline: 58px; }
+      .steps { grid-template-columns: repeat(2,1fr); }
+      .step:nth-child(2) { border-right: 0; }
+      .step:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.18); }
+    }
+    @media (max-width: 760px) {
+      .wrap { width: min(calc(100% - 36px), var(--max)); }
+      .notice span:last-child { display: none; }
+      .nav-inner { min-height: 76px; }
+      .nav-links { top: 76px; }
+      .brand-main { font-size: 1.704rem; }
+      .brand-sub { font-size: .44rem; }
+      .hero-grid { min-height: auto; grid-template-columns: 1fr; }
+      .hero-copy-inner { width: auto; margin: 0; padding: 75px 22px 65px; }
+      .hero h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
+      .hero-image { min-height: 480px; }
+      .image-note { right: 18px; bottom: 18px; left: 18px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .trust-item { min-height: 108px; padding: 17px 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
+      .trust-item:first-child, .trust-item:nth-child(3) { padding-left: 0; }
+      .trust-item:nth-child(odd) { border-right: 1px solid var(--line); }
+      .trust-number { font-size: 1.8rem; }
+      .section, .showroom { padding: 88px 0; }
+      .section-head { margin-bottom: 38px; grid-template-columns: 1fr; gap: 22px; }
+      .rooms { grid-template-columns: 1fr; }
+      .room, .room:first-child { min-height: 440px; grid-column: auto; }
+      .studio-grid { grid-template-columns: 1fr; }
+      .studio-visual { min-height: 440px; }
+      .studio-copy { padding: 70px 22px; }
+      .process-head { align-items: flex-start; flex-direction: column; }
+      .steps { grid-template-columns: 1fr; }
+      .step, .step + .step { min-height: 215px; padding: 26px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+      .step h3 { margin-top: 32px; }
+      .quote { padding: 82px 0; }
+      .showroom-card { grid-template-columns: 1fr; }
+      .showroom-copy { padding: 50px 28px; }
+      .showroom-details { padding: 42px 28px; }
+      .contact-grid { grid-template-columns: 1fr; align-items: start; gap: 36px; }
+      .contact-actions { justify-content: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 34px; }
+    }
+    @media (max-width: 420px) {
+      .hero-actions, .contact-actions { flex-direction: column; }
+      .button { width: 100%; }
+      .materials { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="notice">
+    <div class="wrap"><span>Northallerton showroom</span><span>Over 50 working room displays</span><span>Free design consultation</span></div>
+  </div>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Think home">
+        <span class="brand-main">THINK<i>.</i></span>
+        <span class="brand-sub">Kitchens · Bathrooms · Bedrooms</span>
+      </a>
+      <nav class="nav-links" id="navigation" aria-label="Main navigation">
+        <a href="#kitchens">Kitchens</a>
+        <a href="#bathrooms">Bathrooms</a>
+        <a href="#bedrooms">Bedrooms</a>
+        <a href="#showroom">Showroom</a>
+        <a href="#process">How it works</a>
+      </nav>
+      <a class="button nav-cta" href="#contact">Book a consultation</a>
+      <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-copy-inner" data-reveal>
+            <p class="eyebrow">Designed in North Yorkshire</p>
+            <h1>Thoughtful rooms, made for <em>real life.</em></h1>
+            <p class="hero-lede">Bespoke kitchens, bathrooms and bedrooms—designed around your home, your taste and the way you live.</p>
+            <div class="hero-actions">
+              <a class="button" href="#contact">Book a free consultation</a>
+              <a class="button ghost" href="#rooms">Explore our rooms</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="/think-kitchens/hero.webp" alt="Bright contemporary kitchen with white cabinetry and stone worktops">
+          <div class="image-note"><strong>Made personal</strong><span>From first sketch to final fitting</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Why choose Think">
+      <div class="wrap trust-grid">
+        <div class="trust-item"><span class="trust-number">25+</span><div><strong>Years of experience</strong><small>Design and installation expertise</small></div></div>
+        <div class="trust-item"><span class="trust-number">50+</span><div><strong>Working displays</strong><small>See, touch and compare in person</small></div></div>
+        <div class="trust-item"><span class="trust-number">0</span><div><strong>Cost to get started</strong><small>Complimentary design consultation</small></div></div>
+        <div class="trust-item trust-badge"><img src="/think-kitchens/which.png" alt="Which? Trusted Trader"><div><strong>Trusted Trader</strong><small>Independent reassurance</small></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="rooms">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div><p class="eyebrow">One home. Three spaces.</p><h2>Rooms you’ll enjoy living in.</h2></div>
+          <p>Good design starts with listening. We balance style, storage and everyday practicality to create a room that feels unmistakably yours.</p>
+        </div>
+        <div class="rooms">
+          <article class="room" id="kitchens" data-reveal>
+            <img src="/think-kitchens/hero.webp" alt="Contemporary fitted kitchen">
+            <div class="room-copy"><span>Made to measure</span><h3>Kitchens</h3><a class="text-link" href="#contact">Start your kitchen</a></div>
+          </article>
+          <article class="room" id="bathrooms" data-reveal>
+            <img src="/think-kitchens/bathroom.webp" alt="Light modern fitted bathroom">
+            <div class="room-copy"><span>Calm and considered</span><h3>Bathrooms</h3><a class="text-link" href="#contact">Start your bathroom</a></div>
+          </article>
+          <article class="room room-bedroom" id="bedrooms" data-reveal>
+            <img src="/think-kitchens/bedroom.webp" alt="Fitted contemporary bedroom storage">
+            <div class="room-copy"><span>Beautifully organised</span><h3>Bedrooms</h3><a class="text-link" href="#contact">Start your bedroom</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="studio" aria-label="Complete design service">
+      <div class="studio-grid">
+        <div class="studio-visual"><img src="/think-kitchens/bathroom.webp" alt="Contemporary bathroom furniture and finishes"><div class="stamp">Your whole room<br>in one place</div></div>
+        <div class="studio-copy" data-reveal>
+          <div>
+            <p class="eyebrow">The design studio</p>
+            <h2>Every detail, considered together.</h2>
+            <p>Choose cabinetry, surfaces, flooring and finishes in one place. Seeing materials together makes decisions simpler—and helps the finished room feel beautifully resolved.</p>
+            <div class="materials"><span>Cabinetry</span><span>Worktops</span><span>Tiles & splashbacks</span><span>Amtico flooring</span><span>Colour & finishes</span><span>Fixtures & fittings</span></div>
+            <a class="text-link" href="#showroom">Visit the design studio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" id="process">
+      <div class="wrap">
+        <div class="process-head" data-reveal><div><p class="eyebrow">From idea to installation</p><h2>A simpler way to create your room.</h2></div><p>One experienced team guides the project from first conversation through to the finishing touches.</p></div>
+        <div class="steps">
+          <article class="step" data-reveal><span class="step-num">01</span><h3>Let’s talk</h3><p>Tell us what you want to change, what matters to you and the budget you have in mind.</p></article>
+          <article class="step" data-reveal><span class="step-num">02</span><h3>See the design</h3><p>We’ll develop the layout, guide material choices and bring the idea to life in 3D.</p></article>
+          <article class="step" data-reveal><span class="step-num">03</span><h3>Make it yours</h3><p>Refine the details in our showroom until every element works together.</p></article>
+          <article class="step" data-reveal><span class="step-num">04</span><h3>Bring it home</h3><p>Our installation team coordinates the work and turns the design into your finished room.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote" aria-label="Customer testimonial">
+      <div class="wrap" data-reveal><div class="quote-mark">“</div><blockquote>From the first contact to completion, the whole process was fantastic. We really are over the moon.</blockquote><cite>L Meek · Kitchen customer</cite></div>
+    </section>
+
+    <section class="showroom" id="showroom">
+      <div class="wrap showroom-card" data-reveal>
+        <div class="showroom-copy">
+          <p class="eyebrow">Visit us in Northallerton</p>
+          <h2>Come and experience it for yourself.</h2>
+          <p>Explore more than 50 working kitchen, bathroom and bedroom displays. Open drawers, compare finishes and talk through ideas with a designer over a cuppa.</p>
+          <a class="button" href="https://www.google.com/maps/search/?api=1&query=5+Standard+Way+Northallerton+DL6+2XE" target="_blank" rel="noreferrer">Get directions</a>
+        </div>
+        <div class="showroom-details">
+          <div class="detail"><span>Find us</span><strong>5 Standard Way<br>Northallerton<br>DL6 2XE</strong></div>
+          <div class="detail"><span>Call the showroom</span><strong><a href="tel:+441609761565">01609 761 565</a></strong></div>
+          <div class="detail"><span>Worth knowing</span><strong>Free design consultation<br>No-obligation quotation</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div data-reveal><p class="eyebrow">Ready when you are</p><h2>Let’s think about your space.</h2><p>Book a complimentary design consultation at our Northallerton showroom, or call us to talk through your project.</p></div>
+        <div class="contact-actions" data-reveal><a class="button" href="mailto:smart@kitchenbathroombedroom.co.uk?subject=Design%20consultation">Book a consultation</a><a class="button ghost" href="tel:+441609761565">Call 01609 761 565</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div><a class="brand" href="#top"><span class="brand-main">THINK<i>.</i></span><span class="brand-sub">Kitchens · Bathrooms · Bedrooms</span></a><p>Thoughtful interior design and installation for homes across North Yorkshire, County Durham and Teesside.</p></div>
+        <div><h3>Explore</h3><ul><li><a href="#kitchens">Kitchens</a></li><li><a href="#bathrooms">Bathrooms</a></li><li><a href="#bedrooms">Bedrooms</a></li><li><a href="#showroom">Our showroom</a></li></ul></div>
+        <div><h3>Contact</h3><ul><li><a href="tel:+441609761565">01609 761 565</a></li><li><a href="mailto:smart@kitchenbathroombedroom.co.uk">smart@kitchenbathroombedroom.co.uk</a></li><li>5 Standard Way, Northallerton, DL6 2XE</li></ul></div>
+      </div>
+      <div class="legal">© 2026 Think Kitchen and Bathroom Ltd · Company No. 04438501 · VAT No. 970 8943 76<br>Think Kitchens and Bathrooms Limited is an Appointed Representative of Improveasy Ltd, authorised and regulated by the Financial Conduct Authority. Credit is subject to application and status.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.nav-links');
+    menuButton.addEventListener('click', () => {
+      const open = navigation.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navigation.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open menu');
+    }));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('shown'); observer.unobserve(entry.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('[data-reveal]').forEach(item => observer.observe(item));
+  </script>
+</body>
+</html>
