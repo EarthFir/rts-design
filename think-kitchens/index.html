@@ -62,7 +62,7 @@
     .hero { background: var(--forest); color: white; }
     .hero-grid { display: grid; min-height: 680px; grid-template-columns: minmax(360px,.88fr) minmax(520px,1.38fr); }
     .hero-copy { display: flex; align-items: center; }
-    .hero-copy-inner { width: min(550px, calc(100% - 64px)); margin-left: max(24px, calc((100vw - var(--max)) / 2)); padding: 88px 0 84px; }
+    .hero-copy-inner { width: min(550px, calc(100% - 64px)); margin-left: max(24px, min(calc((100vw - var(--max)) / 2), calc(100% - 550px - 24px))); padding: 88px 0 84px; }
     .hero h1 { max-width: 540px; margin: 0; font-family: var(--serif); font-size: clamp(3.4rem, 5.35vw, 6.2rem); font-weight: 400; letter-spacing: -.045em; line-height: .94; }
     .hero h1 em { color: var(--gold-light); font-style: italic; }
     .hero-lede { max-width: 480px; margin: 28px 0 36px; color: rgba(255,255,255,.72); font-size: 1.05rem; line-height: 1.7; }
