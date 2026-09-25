@@ -92,25 +92,30 @@
   .band-studio{background:var(--studio-bg);color:var(--studio-ink)}
   .studio .sec-head{color:var(--studio-deep)}
   .studio h2{font-weight:400;font-size:clamp(30px,4.4vw,52px);letter-spacing:.015em;line-height:1.16;margin-top:16px;max-width:20ch;color:var(--studio-ink)}
-  .studio .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:44px}
+  .studio .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch;margin-top:44px}
   .studio .copy p{color:var(--studio-mute);font-size:18px;line-height:1.75;max-width:52ch}
   .studio .copy p + p{margin-top:18px}
   .studio .tag{background:#fff;color:var(--studio-deep);border:1px solid var(--studio-soft)}
   .studio .who{margin-top:28px;font-size:21px;color:var(--studio-ink);max-width:42ch;line-height:1.5;font-weight:400;letter-spacing:.01em}
   .studio .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
-  .studio .media{display:flex;flex-direction:column;gap:16px}
+  .studio .media{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .studio .media .frame{height:100%;min-height:280px}
   .studio .note{color:var(--studio-mute)}
 
   .band-floor{background:var(--black);color:#fff}
   .floor .sec-head{color:var(--g)}
   .floor h2{font-weight:700;font-size:clamp(32px,5.2vw,58px);letter-spacing:-.025em;line-height:1.05;margin-top:16px;max-width:15ch}
   .floor h2 .hot{color:var(--g)}
-  .floor .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:44px}
+  .floor .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch;margin-top:44px}
   .floor .copy p{color:#fff;font-size:18px;line-height:1.72;max-width:52ch}
   .floor .copy p + p{margin-top:18px}
   .floor .tag{background:var(--black-2);color:var(--g);border:1px solid var(--line-d)}
   .floor .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
-  .floor .media{display:flex;flex-direction:column;gap:16px}
+  .floor .copy .hyrox-badge{margin-top:28px}
+  .floor .media{display:flex;flex-direction:column;gap:16px;height:100%}
+  .floor .media .imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1 1 auto;min-height:280px}
+  .floor .media .imgs .frame{height:100%}
+  .floor .media .hyrox{flex:0 0 auto}
   .floor .note{color:var(--wht-mute)}
 
   .hyrox-badge{display:flex;align-items:center;gap:16px;background:var(--black-2);border:1px solid var(--line-d);border-radius:0;padding:16px 18px}
@@ -133,7 +138,8 @@
   .community h2{font-weight:600;font-size:clamp(30px,4.6vw,54px);letter-spacing:-.02em;line-height:1.08;margin-top:16px;max-width:20ch;color:var(--ink)}
   .community h2 .thr{color:var(--g-dark)}
   .community .intro{margin-top:20px;max-width:56ch;color:var(--ink-mute);font-size:18.5px}
-  .comm-media{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:38px}
+  .comm-media{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:38px;aspect-ratio:2.5/1}
+  .comm-media .frame{height:100%}
 
   .rave{margin-top:16px;border-radius:0;overflow:hidden;position:relative;min-height:330px;display:flex;align-items:flex-end;color:#fff}
   .rave img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -190,7 +196,10 @@
 
   @media (max-width:900px){
     .studio .grid,.floor .grid{grid-template-columns:1fr;gap:32px}
-    .comm-media{grid-template-columns:1fr}
+    .studio .media .frame,.floor .media .imgs .frame{aspect-ratio:4/5;min-height:0}
+    .floor .media,.floor .media .imgs{height:auto;min-height:0}
+    .comm-media{grid-template-columns:1fr;aspect-ratio:auto}
+    .comm-media .frame{height:auto;aspect-ratio:4/3}
     .events{grid-template-columns:1fr}
     .facts{grid-template-columns:1fr 1fr;gap:22px}
     .foot-grid{grid-template-columns:1fr 1fr}
@@ -290,8 +299,8 @@
         </div>
       </div>
       <div class="media">
-        <div class="frame ar45"><img loading="lazy" src="/the-stud11o/assets/studio-main.jpg" alt="A Pilates mat class at The Stud11o"></div>
-        <div class="frame arw"><img loading="lazy" src="/the-stud11o/assets/studio-secondary.jpg" alt="Members moving through a mobility session"></div>
+        <div class="frame"><img loading="lazy" src="/the-stud11o/assets/studio-main.jpg" alt="A Pilates mat class at The Stud11o"></div>
+        <div class="frame"><img loading="lazy" src="/the-stud11o/assets/studio-secondary.jpg" alt="Members moving through a mobility session"></div>
       </div>
     </div>
   </div>
@@ -313,20 +322,22 @@
           <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">See the Floor timetable</a>
           <a class="btn btn-gd" href="https://linktr.ee/lianneayling" target="_blank" rel="noopener">Book a HYROX Sim</a>
         </div>
-      </div>
-      <div class="media">
         <div class="hyrox-badge">
           <div class="stamp" aria-hidden="true"><span class="s1">OFFICIAL</span><span class="s2">HYROX</span><span class="s3">GYM</span></div>
           <div><div class="bt">An official HYROX gym</div><div class="bd">Train the real format and race official Sims, right here. Your licensed HYROX lockup drops into this space.</div></div>
         </div>
-        <div class="frame ar45"><img loading="lazy" src="/the-stud11o/assets/floor-main.jpg" alt="A member pushing the sled on the HYROX track"></div>
+      </div>
+      <div class="media">
+        <div class="imgs">
+          <div class="frame"><img loading="lazy" src="/the-stud11o/assets/floor-main.jpg" alt="A member pushing the sled on the HYROX track"></div>
+          <div class="frame"><img loading="lazy" src="/the-stud11o/assets/floor-secondary.jpg" alt="A member smiling mid sled push at a HYROX event"></div>
+        </div>
         <div class="hyrox">
           <div class="lab">New to HYROX? Here's the whole race.</div>
           <div class="steps"><span class="step">Run 1km</span><span class="step">One station</span><span class="step">Repeat &times;8</span></div>
           <p>Eight one-kilometre runs, each split by a functional workout: sled push, sled pull, burpee broad jumps, rowing, farmer's carry, sandbag lunges, wall balls. Same race worldwide, your time on the global board.</p>
           <p class="begin">New to it? HYROX Lite runs Thursday evenings, built for exactly this, and every workout scales to where you are today.</p>
         </div>
-        <div class="frame arw"><img loading="lazy" src="/the-stud11o/assets/floor-secondary.jpg" alt="A member smiling mid sled push at a HYROX event"></div>
       </div>
     </div>
   </div>
@@ -340,7 +351,7 @@
     <p class="intro">We throw the kind of events that don't feel like the gym. Our members show up for each other, and honestly, they're the whole point.</p>
 
     <div class="comm-media">
-      <div class="frame arwide"><img loading="lazy" src="/the-stud11o/assets/community-lead.jpg" alt="An outdoor group class with arms raised under a dramatic sky" style="object-position:center 58%"></div>
+      <div class="frame"><img loading="lazy" src="/the-stud11o/assets/community-lead.jpg" alt="An outdoor group class with arms raised under a dramatic sky" style="object-position:center 58%"></div>
       <div class="frame"><img loading="lazy" src="/the-stud11o/assets/community-accent.jpg" alt="A member on the rowing erg at an outdoor event"></div>
     </div>
 
