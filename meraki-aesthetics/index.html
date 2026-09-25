@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Private, nurse-led aesthetics in Northallerton with Nurse Charlie. Natural, subtle results in a calm and confidential home clinic.">
+  <meta name="theme-color" content="#9aa58f">
+  <title>Meraki Aesthetics | Nurse-led aesthetics in Northallerton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%239aa58f'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23fffaf4'%3EMA%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ivory: #fbf8f2;
+      --paper: #fffdf9;
+      --sage: #9aa58f;
+      --sage-deep: #65705f;
+      --sage-pale: #e7eae2;
+      --blush: #efd9dc;
+      --berry: #69394d;
+      --berry-dark: #4e2939;
+      --ink: #2f332f;
+      --muted: #686c67;
+      --gold: #b49a62;
+      --line: rgba(47, 51, 47, .16);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Manrope", Arial, sans-serif;
+      --script: "Allura", cursive;
+      --max: 1180px;
+      --shadow: 0 24px 70px rgba(54, 49, 43, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--berry); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: -5rem;
+      z-index: 100;
+      background: var(--berry);
+      color: white;
+      padding: .8rem 1rem;
+      border-radius: .3rem;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .announcement {
+      background: var(--sage-deep);
+      color: white;
+      text-align: center;
+      padding: .55rem 1rem;
+      font-size: .76rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251, 248, 242, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .nav-shell {
+      width: min(var(--max), calc(100% - 3rem));
+      min-height: 128px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+    }
+    .nav-links a {
+      text-decoration: none;
+      position: relative;
+    }
+    .nav-links a:not(.button)::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 -.35rem 0;
+      height: 1px;
+      background: var(--berry);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .25s ease;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-actions { justify-content: flex-end; }
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .instagram-link svg { width: 18px; height: 18px; }
+
+    .brand {
+      width: 270px;
+      height: 112px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      isolation: isolate;
+    }
+    .brand__ma {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 7rem;
+      line-height: 1;
+      letter-spacing: -.09em;
+      transform: scaleX(1.08);
+    }
+    .brand__name {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -45%);
+      width: 100%;
+      padding: 0 .35rem;
+      background: var(--ivory);
+      color: var(--berry);
+      font-family: var(--script);
+      font-size: 1.48rem;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .mobile-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .mobile-toggle span,
+    .mobile-toggle::before,
+    .mobile-toggle::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 19px;
+      height: 1px;
+      background: currentColor;
+      transition: .25s ease;
+    }
+    .mobile-toggle::before { transform: translateY(-6px); }
+    .mobile-toggle::after { transform: translateY(6px); }
+    .mobile-toggle[aria-expanded="true"] span { opacity: 0; }
+    .mobile-toggle[aria-expanded="true"]::before { transform: rotate(45deg); }
+    .mobile-toggle[aria-expanded="true"]::after { transform: rotate(-45deg); }
+    .mobile-panel { display: none; }
+
+    .button {
+      min-height: 48px;
+      padding: .85rem 1.4rem;
+      border: 1px solid var(--berry);
+      background: var(--berry);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .button:hover {
+      background: var(--berry-dark);
+      transform: translateY(-2px);
+    }
+    .button--ghost { background: transparent; color: var(--berry); }
+    .button--ghost:hover { background: var(--berry); color: white; }
+    .button--light { background: var(--paper); color: var(--berry); border-color: var(--paper); }
+    .button--light:hover { background: var(--blush); color: var(--berry-dark); }
+    .button svg { width: 16px; height: 16px; }
+
+    .hero {
+      min-height: 725px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(430px, .98fr);
+      background: var(--paper);
+    }
+    .hero__copy {
+      padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 7vw, 7rem);
+      align-self: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__inner { position: relative; z-index: 2; max-width: 680px; margin-left: auto; }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      color: var(--sage-deep);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--gold); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 720px;
+      margin: 1.25rem 0 1.35rem;
+      font-family: var(--serif);
+      font-size: clamp(3.7rem, 6.8vw, 7.2rem);
+      font-weight: 500;
+      line-height: .88;
+      letter-spacing: -.045em;
+    }
+    h1 em {
+      display: block;
+      color: var(--berry);
+      font-family: var(--script);
+      font-size: .7em;
+      font-weight: 400;
+      line-height: .95;
+      letter-spacing: 0;
+      transform: rotate(-2deg);
+    }
+    .hero__lead { max-width: 590px; color: var(--muted); font-size: 1.08rem; }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.1rem; }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem 1.4rem;
+      margin-top: 2.25rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--line);
+      color: var(--ink);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .trust-row span { display: inline-flex; align-items: center; gap: .5rem; }
+    .trust-row span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .hero__visual { min-height: 650px; position: relative; overflow: hidden; }
+    .hero__visual img { width: 100%; height: 100%; object-fit: cover; object-position: center 44%; }
+    .hero__visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(47,51,47,.02), rgba(47,51,47,.19));
+    }
+    .reviews-intro {
+      background: var(--sage);
+      color: white;
+      padding: 2.8rem 1.5rem;
+    }
+    .reviews-bar {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 240px 1fr auto;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .rating-block { border-right: 1px solid rgba(255,255,255,.35); padding-right: 2.5rem; }
+    .stars { color: #f4d78d; letter-spacing: .17em; font-size: 1rem; }
+    .rating-block strong { display: block; font-family: var(--serif); font-size: 2.4rem; line-height: 1; }
+    .rating-block span { font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; }
+    .review-stage { min-height: 116px; display: grid; align-items: center; position: relative; }
+    .review {
+      grid-area: 1 / 1;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .review.is-active { opacity: 1; transform: none; pointer-events: auto; }
+    .review q {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.1vw, 1.8rem);
+      line-height: 1.25;
+      quotes: "“" "”";
+    }
+    .review cite {
+      display: block;
+      margin-top: .7rem;
+      font-size: .72rem;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .review-controls { display: flex; gap: .55rem; }
+    .review-dot {
+      width: 11px;
+      height: 11px;
+      padding: 0;
+      border: 1px solid white;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+    .review-dot.is-active { background: white; }
+
+    .section { padding: clamp(5rem, 9vw, 8rem) 1.5rem; }
+    .section__inner { width: min(var(--max), 100%); margin: 0 auto; }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(250px, .78fr) minmax(320px, 1.22fr);
+      gap: clamp(2rem, 7vw, 7rem);
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+    .section h2 {
+      margin-bottom: 0;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5.3vw, 5.4rem);
+      font-weight: 500;
+      line-height: .94;
+      letter-spacing: -.035em;
+    }
+    .section-head p { max-width: 610px; margin-bottom: .2rem; color: var(--muted); }
+    .script-accent { color: var(--berry); font-family: var(--script); font-weight: 400; white-space: nowrap; }
+
+    .treatment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .treatment-card {
+      min-height: 280px;
+      padding: 2.2rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+      transition: background .25s ease, color .25s ease;
+    }
+    .treatment-card:hover { background: var(--sage-deep); color: white; }
+    .treatment-card__number {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+    }
+    .treatment-card h3 {
+      max-width: 260px;
+      margin: auto 0 .75rem;
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .treatment-card p { margin-bottom: 0; color: var(--muted); font-size: .9rem; }
+    .treatment-card:hover p { color: rgba(255,255,255,.76); }
+    .treatment-card__arrow {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.15rem;
+    }
+
+    .philosophy { padding: 0; display: grid; grid-template-columns: 1fr 1fr; background: var(--blush); }
+    .philosophy__image { min-height: 720px; position: relative; }
+    .philosophy__image img { width: 100%; height: 100%; object-fit: cover; }
+    .philosophy__copy {
+      padding: clamp(4rem, 8vw, 8rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .philosophy__copy h2 {
+      max-width: 600px;
+      margin: 1.2rem 0 1.5rem;
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 5vw, 5.5rem);
+      font-weight: 500;
+      line-height: .9;
+      letter-spacing: -.04em;
+    }
+    .philosophy__copy p { max-width: 560px; color: #5d5054; }
+    .signature { margin: 1rem 0 1.5rem; color: var(--berry); font-family: var(--script); font-size: 2.4rem; line-height: 1; }
+    .credential-list {
+      width: 100%;
+      margin: 1rem 0 2rem;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid rgba(105,57,77,.18);
+    }
+    .credential-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem 0;
+      border-bottom: 1px solid rgba(105,57,77,.18);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .credential-list li::after { content: "✓"; color: var(--berry); font-size: 1rem; }
+
+    .pricing { background: var(--paper); }
+    .price-layout { display: grid; grid-template-columns: minmax(300px, .78fr) minmax(500px, 1.22fr); gap: clamp(3rem, 8vw, 8rem); }
+    .price-intro { position: sticky; top: 130px; align-self: start; }
+    .price-intro h2 {
+      margin: 1.2rem 0 1.4rem;
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 5vw, 5.5rem);
+      font-weight: 500;
+      line-height: .92;
+    }
+    .price-intro p { color: var(--muted); }
+    .price-list { border-top: 1px solid var(--ink); }
+    .price-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.35rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .price-row h3 { margin: 0 0 .2rem; font-family: var(--serif); font-size: 1.55rem; font-weight: 600; }
+    .price-row span { color: var(--muted); font-size: .82rem; }
+    .price-row strong { color: var(--berry); font-family: var(--serif); font-size: 1.65rem; white-space: nowrap; }
+    .price-note { margin-top: 1.3rem; color: var(--muted); font-size: .78rem; }
+
+    .clinic { background: var(--sage-pale); }
+    .clinic-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; }
+    .clinic-images { display: grid; grid-template-columns: 1fr .72fr; gap: 1rem; align-items: end; }
+    .clinic-images img { width: 100%; object-fit: cover; box-shadow: var(--shadow); }
+    .clinic-images img:first-child { height: 610px; }
+    .clinic-images img:last-child { height: 430px; margin-bottom: -3rem; }
+    .clinic-copy h2 {
+      margin: 1.1rem 0 1.4rem;
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 4.8vw, 5.1rem);
+      font-weight: 500;
+      line-height: .92;
+    }
+    .clinic-copy p { color: var(--muted); }
+    .clinic-details { margin: 2rem 0; border-top: 1px solid var(--line); }
+    .clinic-detail {
+      display: grid;
+      grid-template-columns: 105px 1fr;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .88rem;
+    }
+    .clinic-detail strong { color: var(--sage-deep); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .book-panel {
+      padding: clamp(5rem, 8vw, 8rem) 1.5rem;
+      background: var(--berry);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .book-panel::before {
+      content: "MA";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255,255,255,.035);
+      font-family: var(--serif);
+      font-size: min(38vw, 32rem);
+      font-weight: 600;
+      letter-spacing: -.13em;
+      line-height: 1;
+    }
+    .book-panel__inner { width: min(760px, 100%); margin: 0 auto; position: relative; z-index: 1; }
+    .book-panel .eyebrow { color: var(--blush); justify-content: center; }
+    .book-panel h2 {
+      margin: 1.2rem 0 1.1rem;
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6vw, 6.3rem);
+      font-weight: 500;
+      line-height: .9;
+    }
+    .book-panel h2 span { display: block; font-family: var(--script); color: var(--blush); font-size: .72em; }
+    .book-panel p { margin: 0 auto 2rem; color: rgba(255,255,255,.76); max-width: 620px; }
+
+    .faq { background: var(--ivory); }
+    .faq-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(3rem, 8vw, 8rem); }
+    .faq h2 {
+      margin: 1.2rem 0 0;
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 5vw, 5.2rem);
+      font-weight: 500;
+      line-height: .92;
+    }
+    .faq-list { border-top: 1px solid var(--ink); }
+    .faq-list details { border-bottom: 1px solid var(--line); }
+    .faq-list summary {
+      min-height: 74px;
+      padding: 1rem 2.8rem 1rem 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      content: "+";
+      position: absolute;
+      right: .2rem;
+      color: var(--berry);
+      font-family: var(--sans);
+      font-size: 1.35rem;
+      font-weight: 400;
+      transition: transform .2s ease;
+    }
+    .faq-list details[open] summary::after { transform: rotate(45deg); }
+    .faq-list details p { max-width: 680px; margin: 0 0 1.4rem; color: var(--muted); font-size: .92rem; }
+
+    .terms-strip {
+      padding: 2rem 1.5rem;
+      background: var(--blush);
+    }
+    .terms-strip__inner {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .terms-strip h2 { margin: 0; font-family: var(--serif); font-size: 1.45rem; }
+    .terms-strip p { margin: 0; color: #5d5054; font-size: .83rem; }
+
+    .site-footer { padding: 4rem 1.5rem 1.5rem; background: #283028; color: white; }
+    .footer-grid {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr .75fr;
+      gap: 4rem;
+    }
+    .site-footer .brand { margin-left: -.55rem; color: white; }
+    .site-footer .brand__name { background: #283028; color: var(--blush); }
+    .footer-intro p { max-width: 380px; margin: 1rem 0 0; color: rgba(255,255,255,.62); font-size: .86rem; }
+    .footer-col h3 { margin: .4rem 0 1.2rem; color: var(--blush); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+    .footer-col a { display: block; width: fit-content; margin: .55rem 0; color: rgba(255,255,255,.78); font-size: .87rem; text-decoration: none; }
+    .footer-col a:hover { color: white; text-decoration: underline; text-underline-offset: .25rem; }
+    .footer-bottom {
+      width: min(var(--max), 100%);
+      margin: 3.5rem auto 0;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255,255,255,.14);
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      color: rgba(255,255,255,.46);
+      font-size: .7rem;
+      letter-spacing: .05em;
+    }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .nav-shell { grid-template-columns: 1fr auto; min-height: 112px; }
+      .nav-shell > .nav-links { display: none; }
+      .brand { justify-self: start; width: 240px; height: 100px; }
+      .mobile-toggle { display: inline-flex; position: relative; }
+      .mobile-panel {
+        position: fixed;
+        inset: 145px 0 0;
+        z-index: 45;
+        padding: 2rem 1.5rem 3rem;
+        background: var(--ivory);
+        flex-direction: column;
+        gap: .2rem;
+      }
+      .mobile-panel.is-open { display: flex; }
+      .mobile-panel a {
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--line);
+        font-family: var(--serif);
+        font-size: 1.65rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .mobile-panel .button { margin-top: 1.4rem; font-family: var(--sans); font-size: .82rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero__copy { padding: 5.5rem 2rem 4rem; }
+      .hero__inner { margin: 0; }
+      .hero__visual { min-height: 560px; }
+      .reviews-bar { grid-template-columns: 190px 1fr; }
+      .review-controls { grid-column: 2; }
+      .section-head { grid-template-columns: 1fr; gap: 1.4rem; }
+      .treatment-grid { grid-template-columns: repeat(2, 1fr); }
+      .philosophy { grid-template-columns: 1fr; }
+      .philosophy__image { min-height: 620px; }
+      .price-layout { grid-template-columns: 1fr; }
+      .price-intro { position: static; }
+      .clinic-grid { grid-template-columns: 1fr; }
+      .clinic-copy { grid-row: 1; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .announcement { font-size: .64rem; }
+      .nav-shell { width: min(100% - 2rem, var(--max)); min-height: 94px; }
+      .mobile-panel { inset: 125px 0 0; }
+      .brand { width: 210px; height: 82px; }
+      .brand__ma { font-size: 6rem; }
+      .brand__name { font-size: 1.22rem; }
+      .hero__copy { padding: 4.4rem 1.25rem 3.5rem; }
+      h1 { font-size: clamp(3.4rem, 18vw, 5rem); }
+      .hero__lead { font-size: 1rem; }
+      .hero__actions { display: grid; }
+      .hero__visual { min-height: 520px; }
+      .reviews-intro { padding: 2.5rem 1.25rem; }
+      .reviews-bar { grid-template-columns: 1fr; gap: 1.4rem; }
+      .rating-block { border: 0; border-bottom: 1px solid rgba(255,255,255,.35); padding: 0 0 1.4rem; }
+      .review-controls { grid-column: 1; }
+      .section { padding: 4.7rem 1.25rem; }
+      .section-head { margin-bottom: 2.5rem; }
+      .section h2 { font-size: 3.25rem; }
+      .treatment-grid { grid-template-columns: 1fr; }
+      .treatment-card { min-height: 230px; padding: 1.6rem; }
+      .treatment-card__arrow { top: 1.4rem; right: 1.4rem; }
+      .philosophy__image { min-height: 520px; }
+      .philosophy__copy { padding: 4.5rem 1.25rem; }
+      .philosophy__copy h2 { font-size: 3.5rem; }
+      .price-layout { gap: 2.5rem; }
+      .price-intro h2, .clinic-copy h2, .faq h2 { font-size: 3.4rem; }
+      .price-row { gap: 1rem; }
+      .price-row h3 { font-size: 1.3rem; }
+      .price-row strong { font-size: 1.4rem; }
+      .clinic-images { grid-template-columns: 1fr; }
+      .clinic-images img:first-child { height: 500px; }
+      .clinic-images img:last-child { display: none; }
+      .clinic-detail { grid-template-columns: 85px 1fr; gap: 1rem; }
+      .book-panel { padding: 5rem 1.25rem; }
+      .book-panel h2 { font-size: 3.8rem; }
+      .terms-strip__inner { grid-template-columns: 1fr; gap: .5rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 1.5rem; }
+      .footer-intro { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: .4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement">Private one-to-one clinic · Romanby, Northallerton</div>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#treatments">Treatments</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <a class="brand" href="#top" aria-label="Meraki Aesthetics home">
+        <span class="brand__ma">MA</span>
+        <span class="brand__name">Meraki Aesthetics</span>
+      </a>
+      <nav class="nav-links nav-actions" aria-label="Booking and social links">
+        <a class="instagram-link" href="https://www.instagram.com/_meraki_aesthetics_/" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a class="button" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener">Book now</a>
+      </nav>
+      <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span></button>
+    </div>
+  </header>
+  <nav class="mobile-panel" id="mobile-menu" aria-label="Mobile navigation">
+    <a href="#treatments">Treatments</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#clinic-info">Clinic info</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://www.instagram.com/_meraki_aesthetics_/" target="_blank" rel="noopener">Instagram</a>
+    <a class="button" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener">Book an appointment</a>
+  </nav>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero__copy">
+        <div class="hero__inner reveal">
+          <div class="eyebrow">Nurse-led aesthetics in Northallerton</div>
+          <h1>Still you. <em>Just fresher.</em></h1>
+          <p class="hero__lead">Natural, subtle treatments in a private space where you can feel completely at ease. Every appointment is one-to-one with Nurse Charlie and thoughtfully tailored to you.</p>
+          <div class="hero__actions">
+            <a class="button" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener">Book an appointment <span aria-hidden="true">↗</span></a>
+            <a class="button button--ghost" href="#treatments">Explore treatments</a>
+          </div>
+          <div class="trust-row" aria-label="Clinic credentials">
+            <span>NMC registered nurse</span>
+            <span>Fully insured</span>
+            <span>Private & confidential</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <img src="/meraki-aesthetics/assets/clinic-hero.webp" alt="Meraki Aesthetics' calm private treatment room" width="1035" height="1725">
+      </div>
+    </section>
+
+    <section class="reviews-intro" aria-label="Client reviews">
+      <div class="reviews-bar">
+        <div class="rating-block">
+          <div class="stars" aria-label="Five stars">★★★★★</div>
+          <strong>5.0</strong>
+          <span>276 client reviews</span>
+        </div>
+        <div class="review-stage" aria-live="polite">
+          <article class="review is-active">
+            <q>Charlie always makes me feel at ease and comfortable. Amazing as always.</q>
+            <cite>Jasmine · Verified client review</cite>
+          </article>
+          <article class="review">
+            <q>Charlie was very gentle, reassured me throughout and fully explained the aftercare.</q>
+            <cite>Angela · Verified client review</cite>
+          </article>
+          <article class="review">
+            <q>Lovely, calm room. Charlie was extremely knowledgeable and I felt at ease throughout.</q>
+            <cite>Verified client review</cite>
+          </article>
+        </div>
+        <div class="review-controls" aria-label="Choose testimonial">
+          <button class="review-dot is-active" type="button" aria-label="Show review 1"></button>
+          <button class="review-dot" type="button" aria-label="Show review 2"></button>
+          <button class="review-dot" type="button" aria-label="Show review 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="treatments">
+      <div class="section__inner">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Treatments</div>
+            <h2>Subtle by <span class="script-accent">design</span></h2>
+          </div>
+          <p>Whether you are considering your first treatment or know exactly what works for you, every appointment begins with an honest conversation. The aim is simple: enhance your natural features, never change them.</p>
+        </div>
+        <div class="treatment-grid reveal">
+          <a class="treatment-card" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener" aria-label="View anti-wrinkle appointments">
+            <span class="treatment-card__number">01</span><span class="treatment-card__arrow" aria-hidden="true">↗</span>
+            <h3>Anti-wrinkle treatments</h3>
+            <p>Consultation-led treatment plans for a rested, natural-looking result.</p>
+          </a>
+          <a class="treatment-card" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener" aria-label="View dermal filler appointments">
+            <span class="treatment-card__number">02</span><span class="treatment-card__arrow" aria-hidden="true">↗</span>
+            <h3>Dermal filler</h3>
+            <p>Thoughtful volume and definition for lips, cheeks, chin and facial contours.</p>
+          </a>
+          <a class="treatment-card" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener" aria-label="View skin booster appointments">
+            <span class="treatment-card__number">03</span><span class="treatment-card__arrow" aria-hidden="true">↗</span>
+            <h3>Skin boosters</h3>
+            <p>Injectable skin treatments designed to support hydration and skin quality.</p>
+          </a>
+          <a class="treatment-card" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener" aria-label="View polynucleotide appointments">
+            <span class="treatment-card__number">04</span><span class="treatment-card__arrow" aria-hidden="true">↗</span>
+            <h3>Polynucleotides</h3>
+            <p>Regenerative treatment options for the face, neck and delicate eye area.</p>
+          </a>
+          <a class="treatment-card" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener" aria-label="View facial and skin appointments">
+            <span class="treatment-card__number">05</span><span class="treatment-card__arrow" aria-hidden="true">↗</span>
+            <h3>Facials & skin</h3>
+            <p>Dermaplaning, microneedling and glow-focused skin treatments.</p>
+          </a>
+          <a class="treatment-card" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener" aria-label="View other treatment appointments">
+            <span class="treatment-card__number">06</span><span class="treatment-card__arrow" aria-hidden="true">↗</span>
+            <h3>Other treatments</h3>
+            <p>Eye treatments, fat dissolving, vitamin injections and tailored packages.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="philosophy" aria-labelledby="meet-charlie">
+      <div class="philosophy__image">
+        <img src="/meraki-aesthetics/assets/result-eye.webp" alt="Close-up before and after result from a Meraki Aesthetics treatment" loading="lazy" width="1035" height="1035">
+      </div>
+      <div class="philosophy__copy reveal">
+        <div class="eyebrow">Meet your practitioner</div>
+        <h2 id="meet-charlie">Expert hands. <span class="script-accent">A gentle approach.</span></h2>
+        <p>I’m Charlie, a fully qualified nurse and Advanced Aesthetics Practitioner. I created Meraki to feel like a safe, welcoming space—somewhere you can ask questions, be heard and choose what genuinely feels right for you.</p>
+        <p>My approach is centred on subtle, balanced results that work with your features. You should leave looking refreshed and feeling like yourself.</p>
+        <div class="signature">Nurse Charlie</div>
+        <ul class="credential-list">
+          <li>NMC registered nurse</li>
+          <li>Advanced aesthetics practitioner</li>
+          <li>Fully qualified & insured</li>
+        </ul>
+        <a class="button button--ghost" href="https://www.instagram.com/_meraki_aesthetics_/" target="_blank" rel="noopener">See Charlie’s work</a>
+      </div>
+    </section>
+
+    <section class="section pricing" id="pricing">
+      <div class="section__inner price-layout">
+        <div class="price-intro reveal">
+          <div class="eyebrow">Selected pricing</div>
+          <h2>Clear from the <span class="script-accent">start</span></h2>
+          <p>A selection of popular appointments is shown here. For the complete, current menu—including package options and treatment durations—view the live booking page.</p>
+          <a class="button button--ghost" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener">View full price list</a>
+        </div>
+        <div class="reveal">
+          <div class="price-list">
+            <div class="price-row"><div><h3>Anti-wrinkle treatment</h3><span>One area</span></div><strong>£160</strong></div>
+            <div class="price-row"><div><h3>Lip filler</h3><span>0.5ml · subtle enhancement</span></div><strong>£120</strong></div>
+            <div class="price-row"><div><h3>Dermal filler</h3><span>1ml · selected areas</span></div><strong>£170</strong></div>
+            <div class="price-row"><div><h3>Tear trough filler</h3><span>Under-eye consultation required</span></div><strong>£200</strong></div>
+            <div class="price-row"><div><h3>Polynucleotide face</h3><span>Skin rejuvenation treatment</span></div><strong>£200</strong></div>
+            <div class="price-row"><div><h3>Dermaplaning facial</h3><span>Skin smoothing treatment</span></div><strong>£45</strong></div>
+          </div>
+          <p class="price-note">Prices shown were current when this page was prepared. Suitability, treatment choice and final price are confirmed during consultation; the booking portal always shows the latest information.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section clinic" id="clinic-info">
+      <div class="section__inner clinic-grid">
+        <div class="clinic-images reveal">
+          <img src="/meraki-aesthetics/assets/clinic-entry.webp" alt="Private entrance to Meraki Aesthetics clinic in Romanby" loading="lazy" width="691" height="1152">
+          <img src="/meraki-aesthetics/assets/clinic-chair.webp" alt="Treatment chair inside the Meraki Aesthetics clinic" loading="lazy" width="691" height="1152">
+        </div>
+        <div class="clinic-copy reveal">
+          <div class="eyebrow">The clinic</div>
+          <h2>A private space, made for <span class="script-accent">you</span></h2>
+          <p>Meraki is a discreet home clinic in Romanby, just outside Northallerton town centre. Appointments are one-to-one and strictly confidential, so the space is yours for the duration of your visit.</p>
+          <div class="clinic-details">
+            <div class="clinic-detail"><strong>Location</strong><span>Harewood Chase, Romanby, Northallerton, DL7 8FX</span></div>
+            <div class="clinic-detail"><strong>Arrival</strong><span>Please arrive at your appointment time as there is no waiting room.</span></div>
+            <div class="clinic-detail"><strong>Contact</strong><span>07857 927266<br>charliemerakiaesthetics@gmail.com</span></div>
+          </div>
+          <a class="button button--ghost" href="https://www.google.com/maps/search/?api=1&query=Harewood+Chase+Romanby+Northallerton+DL7+8FX" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="book-panel" id="bookings">
+      <div class="book-panel__inner reveal">
+        <div class="eyebrow">Ready when you are</div>
+        <h2>Feel like yourself. <span>Only fresher.</span></h2>
+        <p>Browse live availability, choose your treatment or book a free consultation with Nurse Charlie.</p>
+        <a class="button button--light" href="https://meraki-aesthetics.book.app/book-now" target="_blank" rel="noopener">Book your appointment <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="section__inner faq-grid">
+        <div class="reveal">
+          <div class="eyebrow">Good to know</div>
+          <h2>Your questions, <span class="script-accent">answered</span></h2>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>I’m new to aesthetics. Where should I start?</summary>
+            <p>Book a free consultation. Nurse Charlie will listen to what you would like to achieve, explain suitable options and answer your questions without pressure to go ahead.</p>
+          </details>
+          <details>
+            <summary>Is the clinic private?</summary>
+            <p>Yes. Meraki is a private home clinic and appointments are one-to-one and confidential. There is no waiting room, so please arrive at your appointment time rather than early.</p>
+          </details>
+          <details>
+            <summary>Can I bring my child?</summary>
+            <p>Well-behaved children may attend if childcare is difficult. Please remember this is a clinical setting where sharps are present, so they must remain safely supervised.</p>
+          </details>
+          <details>
+            <summary>What is the cancellation policy?</summary>
+            <p>Cancellations with less than 24 hours’ notice require 50% of the treatment cost. Please give at least 48 hours’ notice to reschedule through your online booking portal.</p>
+          </details>
+          <details>
+            <summary>Will my result look natural?</summary>
+            <p>Natural and subtle results are central to Charlie’s approach. Your treatment plan is based on your own features, clinical suitability and goals; individual results and recovery can vary.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="terms-strip" id="terms" aria-labelledby="terms-heading">
+      <div class="terms-strip__inner">
+        <h2 id="terms-heading">Appointment terms</h2>
+        <p>By booking, you agree to Meraki Aesthetics’ cancellation and rescheduling policy. Treatment is subject to consultation, medical history and clinical suitability. Please use the customer portal to manage an existing booking or contact the clinic if your circumstances change.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-intro">
+        <a class="brand" href="#top" aria-label="Meraki Aesthetics home">
+          <span class="brand__ma">MA</span>
+          <span class="brand__name">Meraki Aesthetics</span>
+        </a>
+        <p>Private, nurse-led aesthetic treatments in Romanby, Northallerton. Natural results, honest advice and a space where you can feel at ease.</p>
+      </div>
+      <nav class="footer-col" aria-label="Explore">
+        <h3>Explore</h3>
+        <a href="#treatments">Treatments</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#bookings">Bookings</a>
+        <a href="https://meraki-aesthetics.book.app/gift/card" target="_blank" rel="noopener">Gift cards</a>
+      </nav>
+      <nav class="footer-col" aria-label="Information">
+        <h3>Information</h3>
+        <a href="#terms">Terms</a>
+        <a href="#clinic-info">Clinic info</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://meraki-aesthetics.book.app/customer/login" target="_blank" rel="noopener">Customer portal</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Meraki Aesthetics</span>
+      <span>Nurse-led aesthetics · Northallerton, North Yorkshire</span>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.mobile-toggle');
+    const mobileMenu = document.querySelector('.mobile-panel');
+    function closeMenu() {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      mobileMenu.classList.remove('is-open');
+      document.body.classList.remove('menu-open');
+    }
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+      mobileMenu.classList.toggle('is-open', !open);
+      document.body.classList.toggle('menu-open', !open);
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+    const reviews = [...document.querySelectorAll('.review')];
+    const dots = [...document.querySelectorAll('.review-dot')];
+    let reviewIndex = 0;
+    function showReview(index) {
+      reviewIndex = index;
+      reviews.forEach((review, i) => review.classList.toggle('is-active', i === index));
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === index);
+        dot.setAttribute('aria-pressed', String(i === index));
+      });
+    }
+    dots.forEach((dot, i) => dot.addEventListener('click', () => showReview(i)));
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.setInterval(() => showReview((reviewIndex + 1) % reviews.length), 6500);
+    }
+
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      reveals.forEach(item => observer.observe(item));
+    } else {
+      reveals.forEach(item => item.classList.add('is-visible'));
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
