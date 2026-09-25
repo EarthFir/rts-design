@@ -85,6 +85,18 @@
   .door-b .ghost{color:var(--g);opacity:.24}
   .door-b .room{color:var(--g)}.door-b .rooms-line{color:var(--wht-mute)}
   .door-b:hover,.door-b:focus-visible{transform:translateY(-3px);border-color:var(--g);box-shadow:0 0 0 1px var(--g);outline:none}
+  .door .now{margin-top:13px;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:none;align-items:center;gap:8px}
+  .door .now .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+  html.has-panel-toggle .door.is-active .enter{display:none}
+  html.has-panel-toggle .door.is-active .now{display:inline-flex}
+  .door-a.is-active{background:var(--studio-soft);box-shadow:inset 0 0 0 2px var(--studio-deep);transform:translateY(-3px)}
+  .door-a.is-active .now{color:var(--studio-deep)}
+  .door-b.is-active{border-color:var(--g);box-shadow:inset 0 0 0 2px var(--g);transform:translateY(-3px)}
+  .door-b.is-active .now{color:var(--g)}
+  html.has-panel-toggle .door{cursor:pointer}
+  html.has-panel-toggle .panel{display:none;animation:panelFade .32s ease}
+  html.has-panel-toggle .panel.is-active{display:block}
+  @keyframes panelFade{from{opacity:0}to{opacity:1}}
 
   .thread{background:var(--white);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l);padding:58px 0}
   .thread .big{font-weight:600;font-size:clamp(27px,4.2vw,44px);line-height:1.12;letter-spacing:-.015em;max-width:22ch;color:var(--ink)}
@@ -239,6 +251,7 @@
     html{scroll-behavior:auto}
     .rise{opacity:1;transform:none;transition:none}
     .door,.btn{transition:none}
+    .panel{animation:none!important}
   }
 </style>
 </head>
@@ -248,8 +261,8 @@
   <div class="wrap nav-in">
     <a class="mark" href="#top"><img src="/the-stud11o/assets/logo-black.png" alt="The Stud11o"></a>
     <div class="nav-links">
-      <a href="#studio">Studio</a>
-      <a href="#fitness">The Floor</a>
+      <a href="#studio" data-panel="studio">Studio</a>
+      <a href="#fitness" data-panel="fitness">The Floor</a>
       <a href="#community">Community</a>
       <a href="#shop">Shop</a>
       <a href="#visit">Visit</a>
@@ -290,26 +303,28 @@
 <section class="doors-band">
   <div class="wrap">
     <div class="doors">
-      <a class="door door-a" href="#studio">
+      <a class="door door-a" href="#studio" data-panel="studio" role="tab" aria-selected="true" aria-controls="studio">
         <span class="ghost" aria-hidden="true">1</span>
         <span class="room">The Studio</span>
         <h3>Slow down to move better.</h3>
         <span class="rooms-line">Pilates, Yoga, DanceFiit, mobility &amp; stretch</span>
         <span class="enter"><span class="dot"></span>Step into the Studio</span>
+        <span class="now"><span class="dot"></span>Viewing the Studio</span>
       </a>
-      <a class="door door-b" href="#fitness">
+      <a class="door door-b" href="#fitness" data-panel="fitness" role="tab" aria-selected="false" aria-controls="fitness">
         <span class="ghost" aria-hidden="true">1</span>
         <span class="room">The Floor</span>
         <h3>Find your limit. Then move it.</h3>
         <span class="rooms-line">HYROX, strength, circuits, boxing, RunFiit</span>
         <span class="enter"><span class="dot"></span>Get on the Floor</span>
+        <span class="now"><span class="dot"></span>Viewing the Floor</span>
       </a>
     </div>
   </div>
 </section>
 
 <!-- THE STUDIO -->
-<section id="studio" class="band band-studio studio">
+<section id="studio" class="band band-studio studio panel" data-panel="studio">
   <div class="wrap">
     <p class="sec-head">The Studio</p>
     <h2>Roll out your mat, and let the pace drop.</h2>
@@ -335,7 +350,7 @@
 </section>
 
 <!-- THE FLOOR -->
-<section id="fitness" class="band band-floor floor">
+<section id="fitness" class="band band-floor floor panel" data-panel="fitness">
   <div class="wrap">
     <p class="sec-head">The Floor</p>
     <h2>Sleds, sandbags, and a <span class="hot">clock</span> that doesn't care how you feel.</h2>
@@ -501,6 +516,39 @@
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(reduce){ document.body.classList.add('loaded'); return; }
     requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.body.classList.add('loaded'); }); });
+  })();
+
+  (function(){
+    var doors = document.querySelectorAll('.door[data-panel]');
+    var panels = document.querySelectorAll('.panel[data-panel]');
+    var links = document.querySelectorAll('a[data-panel]');
+    if(!doors.length || !panels.length) return;
+
+    document.documentElement.classList.add('has-panel-toggle');
+
+    function activate(name){
+      doors.forEach(function(d){
+        var on = d.dataset.panel === name;
+        d.classList.toggle('is-active', on);
+        d.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach(function(p){
+        p.classList.toggle('is-active', p.dataset.panel === name);
+      });
+    }
+
+    links.forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        activate(a.dataset.panel);
+        if(!a.classList.contains('door')){
+          var target = document.querySelector('#' + a.dataset.panel);
+          if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    activate('studio');
   })();
 </script>
 </body>
