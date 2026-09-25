@@ -67,7 +67,8 @@
   .hero-sub p{color:var(--ink-mute);font-size:16px;max-width:50ch}
   .hero-sub b{color:var(--ink)}
 
-  .doors-band{background:var(--white);padding:20px 0 70px}
+  .doors-band{background:var(--white);padding:20px 0 70px;position:relative;z-index:1}
+  html.has-panel-toggle .doors-band{padding-bottom:0}
   .doors{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .door{position:relative;overflow:hidden;text-decoration:none;border-radius:0;padding:28px 30px 26px;min-height:190px;
         display:flex;flex-direction:column;transition:background .26s, color .26s, border-color .26s, transform .26s, box-shadow .26s}
@@ -89,13 +90,16 @@
   .door .now .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
   html.has-panel-toggle .door.is-active .enter{display:none}
   html.has-panel-toggle .door.is-active .now{display:inline-flex}
-  .door-a.is-active{background:var(--studio-soft);box-shadow:inset 0 0 0 2px var(--studio-deep);transform:translateY(-3px)}
+  html.has-panel-toggle .door.is-active{z-index:2;transform:translateY(-7px);outline:2px solid transparent;outline-offset:-2px;box-shadow:0 30px 36px -20px rgba(15,19,18,.4)}
+  .door-a.is-active{background:var(--studio-soft);outline-color:var(--studio-deep)}
   .door-a.is-active .now{color:var(--studio-deep)}
-  .door-b.is-active{border-color:var(--g);box-shadow:inset 0 0 0 2px var(--g);transform:translateY(-3px)}
+  .door-b.is-active{border-color:var(--g);outline-color:var(--g)}
   .door-b.is-active .now{color:var(--g)}
   html.has-panel-toggle .door{cursor:pointer}
-  html.has-panel-toggle .panel{display:none;animation:panelFade .32s ease}
+  html.has-panel-toggle .panel{display:none;position:relative;z-index:0;animation:panelFade .32s ease}
   html.has-panel-toggle .panel.is-active{display:block}
+  html.has-panel-toggle .band-studio.panel{padding-top:64px}
+  html.has-panel-toggle .band-floor.panel{padding-top:64px}
   @keyframes panelFade{from{opacity:0}to{opacity:1}}
 
   .thread{background:var(--white);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l);padding:58px 0}
