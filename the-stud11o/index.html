@@ -90,7 +90,7 @@
   .door .now .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
   html.has-panel-toggle .door.is-active .enter{display:none}
   html.has-panel-toggle .door.is-active .now{display:inline-flex}
-  html.has-panel-toggle .door.is-active{z-index:2;outline:2px solid transparent;outline-offset:-2px;box-shadow:0 -30px 36px -20px rgba(15,19,18,.4)}
+  html.has-panel-toggle .door.is-active{z-index:2;outline:2px solid transparent;outline-offset:-2px}
   .door-a.is-active{background:var(--studio-bg);outline-color:var(--studio-deep)}
   .door-a.is-active .now{color:var(--studio-deep)}
   .door-b.is-active{border-color:var(--g);outline-color:var(--g)}
@@ -101,6 +101,19 @@
   html.has-panel-toggle .band-studio.panel{padding-top:64px}
   html.has-panel-toggle .band-floor.panel{padding-top:64px}
   @keyframes panelFade{from{opacity:0}to{opacity:1}}
+
+  /* Combined card+panel shape: a single notched silhouette instead of a card floating above a rectangle.
+     Uses SVG (not clip-path) because Chrome clips a filter's drop-shadow to the clip-path box, hiding it entirely.
+     Point coordinates are written by JS to stay pixel-accurate against the door's real position. */
+  .tab-shape{position:absolute;top:20px;left:0;z-index:0;display:none;pointer-events:none;overflow:visible}
+  html.has-panel-toggle .doors-band[data-active="studio"] .tab-shape-a,
+  html.has-panel-toggle .doors-band[data-active="fitness"] .tab-shape-b{display:block}
+  .tab-shape-a{filter:drop-shadow(0 -22px 30px rgba(15,19,18,.32))}
+  .tab-shape-b{filter:drop-shadow(0 -22px 34px rgba(15,19,18,.45))}
+  .tab-shape-a .tab-outline{fill:var(--studio-deep)}
+  .tab-shape-a .tab-fill{fill:var(--studio-bg)}
+  .tab-shape-b .tab-outline{fill:var(--g)}
+  .tab-shape-b .tab-fill{fill:var(--black)}
 
   .thread{background:var(--white);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l);padding:58px 0}
   .thread .big{font-weight:600;font-size:clamp(27px,4.2vw,44px);line-height:1.12;letter-spacing:-.015em;max-width:22ch;color:var(--ink)}
@@ -228,6 +241,8 @@
   :focus-visible{outline:2px solid var(--g-dark);outline-offset:3px;border-radius:0}
 
   @media (max-width:900px){
+    .tab-shape{display:none!important}
+    html.has-panel-toggle .door.is-active{box-shadow:0 -22px 30px -16px rgba(15,19,18,.35)}
     .studio .grid,.floor .grid{grid-template-columns:1fr;gap:32px}
     .studio .media .frame,.floor .media .imgs .frame{aspect-ratio:4/5;min-height:0}
     .floor .media,.floor .media .imgs{height:auto;min-height:0}
@@ -305,6 +320,8 @@
 </section>
 
 <section class="doors-band">
+  <svg class="tab-shape tab-shape-a" aria-hidden="true"><polygon class="tab-outline"></polygon><polygon class="tab-fill"></polygon></svg>
+  <svg class="tab-shape tab-shape-b" aria-hidden="true"><polygon class="tab-outline"></polygon><polygon class="tab-fill"></polygon></svg>
   <div class="wrap">
     <div class="doors">
       <a class="door door-a" href="#studio" data-panel="studio" role="tab" aria-selected="true" aria-controls="studio">
@@ -529,6 +546,41 @@
     if(!doors.length || !panels.length) return;
 
     document.documentElement.classList.add('has-panel-toggle');
+    var doorsBand = document.querySelector('.doors-band');
+    var tabShapeA = document.querySelector('.tab-shape-a');
+    var tabShapeB = document.querySelector('.tab-shape-b');
+    var doorA = document.querySelector('.door-a');
+    var doorB = document.querySelector('.door-b');
+
+    function updateTabShapes(){
+      if(!doorsBand || !tabShapeA || !tabShapeB || !doorA || !doorB) return;
+      if(window.innerWidth <= 900) return;
+      var bandRect = doorsBand.getBoundingClientRect();
+      var W = bandRect.width;
+      var TOP = 20, BLEED = 32, INSET = 2;
+      var H = (bandRect.height - TOP) + BLEED;
+      var step = H - BLEED;
+
+      function pts(list){ return list.map(function(p){ return p[0] + ',' + p[1]; }).join(' '); }
+
+      function setShape(svg, doorRect){
+        var x1 = doorRect.left - bandRect.left;
+        var x2 = doorRect.right - bandRect.left;
+        svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+        svg.setAttribute('width', W);
+        svg.setAttribute('height', H);
+        svg.querySelector('.tab-outline').setAttribute('points', pts([
+          [x1,0],[x2,0],[x2,step],[W,step],[W,H],[0,H],[0,step],[x1,step]
+        ]));
+        var si = step + INSET;
+        svg.querySelector('.tab-fill').setAttribute('points', pts([
+          [x1+INSET,INSET],[x2-INSET,INSET],[x2-INSET,si],[W-INSET,si],[W-INSET,H],[INSET,H],[INSET,si],[x1+INSET,si]
+        ]));
+      }
+
+      setShape(tabShapeA, doorA.getBoundingClientRect());
+      setShape(tabShapeB, doorB.getBoundingClientRect());
+    }
 
     function activate(name){
       doors.forEach(function(d){
@@ -539,6 +591,7 @@
       panels.forEach(function(p){
         p.classList.toggle('is-active', p.dataset.panel === name);
       });
+      if(doorsBand) doorsBand.dataset.active = name;
     }
 
     links.forEach(function(a){
@@ -552,7 +605,9 @@
       });
     });
 
+    updateTabShapes();
     activate('studio');
+    window.addEventListener('resize', updateTabShapes);
   })();
 </script>
 </body>
