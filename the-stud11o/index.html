@@ -54,8 +54,13 @@
   .nav-links .btn{padding:10px 20px;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
   .nav-book{display:none}
 
-  .hero{background:var(--studio-soft);line-height:0}
-  .hero-exact{display:block;width:100%;height:auto}
+  .hero{background:var(--studio-soft)}
+  .hero-media{position:relative;line-height:0}
+  .hero-bg{display:block;width:100%;height:auto}
+  .hero-copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;padding:5% 10% 6% 3.6%}
+  .hero-eyebrow{font-weight:600;font-size:clamp(13px,1.35vw,16px);letter-spacing:.01em;text-transform:uppercase;color:#16241C;max-width:20ch;line-height:1.35}
+  .hero-btn{margin-top:clamp(10px,1.6vw,16px);text-transform:uppercase;letter-spacing:.06em;font-size:clamp(12px,1vw,14px);padding:clamp(9px,1.1vw,12px) clamp(16px,2.2vw,22px)}
+  .hero-head{margin-top:auto;font-family:"Archivo";font-weight:900;text-transform:uppercase;font-size:clamp(30px,6.6vw,84px);line-height:.96;letter-spacing:-.01em;color:#0F1312;max-width:9ch}
 
   .hero-sub{background:var(--white);padding:30px 0}
   .hero-sub-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
@@ -222,6 +227,8 @@
     .wrap{padding:0 20px}
     .nav-links{display:none}.nav-book{display:inline-block}
     .band{padding:60px 0}
+    .hero-copy{position:static;height:auto;background:var(--g);padding:26px 22px 32px}
+    .hero-head{margin-top:20px;font-size:clamp(34px,11vw,52px);max-width:none}
     .doors{grid-template-columns:1fr;gap:14px}
     .door{min-height:auto}.door .ghost{font-size:150px;top:-12px}
     .facts{grid-template-columns:1fr}
@@ -254,9 +261,16 @@
 
 <a id="top"></a>
 
-<!-- HERO — your mock, used exactly as supplied -->
+<!-- HERO -->
 <header class="hero">
-  <img class="hero-exact" src="/the-stud11o/assets/hero-exact.jpg" alt="Fitness is for everyone — The Stud11o hero">
+  <div class="hero-media">
+    <img class="hero-bg" src="/the-stud11o/assets/header-image.png" alt="Members training in The Studio and pushing a sled on The Floor at The Stud11o">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">Your fitness journey starts here.</p>
+      <a class="btn btn-ink hero-btn" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">Join a class</a>
+      <h1 class="hero-head">Fitness is for everyone</h1>
+    </div>
+  </div>
 </header>
 
 <section class="hero-sub">
