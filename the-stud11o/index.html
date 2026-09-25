@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Stud11o — two rooms, one roof</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF; --off:#F5F8F6; --black:#0F1312; --black-2:#191F1D;
+    --line-d:rgba(255,255,255,.14); --line-l:rgba(20,32,26,.12);
+    --ink:#16211B; --ink-mute:#5B6862; --wht-mute:rgba(255,255,255,.64);
+    --studio-bg:#EAF4EE; --studio-soft:#ACD7C7; --studio-ink:#20342B; --studio-mute:#4C6459; --studio-deep:#3C7A5E;
+    --g:#40D4A1; --g-dark:#1FAE7E; --g-hyrox:#40D4A1; --g-hyrox-deep:#1FAE7E; --g-pale:#ACD7C7;
+    --wrap:1180px; color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--white);color:var(--ink);
+    font-family:"Inter",Arial,Helvetica,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:17px;line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  h1,h2,h3,h4{margin:0;line-height:1.08;font-family:"Inter",Arial,Helvetica,sans-serif}
+  p{margin:0}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 28px}
+
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+  .tag{font-size:13.5px;font-weight:500;letter-spacing:.01em;padding:6px 13px;border-radius:0;white-space:nowrap}
+  .sec-head{font-weight:600;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase}
+
+  .frame{border-radius:0;overflow:hidden;position:relative;background:#dfe6e1}
+  .frame img{width:100%;height:100%;object-fit:cover}
+  .ar45{aspect-ratio:4/5}.arw{aspect-ratio:16/10}.arwide{aspect-ratio:16/9}
+  .note{margin-top:9px;font-size:12px;letter-spacing:.02em}
+
+  .btn{display:inline-block;text-decoration:none;font-weight:600;border-radius:0;padding:11px 21px;font-size:15px;
+       transition:transform .14s, background .16s, color .16s, border-color .16s;border:1.5px solid transparent}
+  .btn:active{transform:translateY(1px)}
+  .btn-g{background:var(--g);color:#06231A}.btn-g:hover{background:var(--g-dark)}
+  .btn-ink{background:var(--black);color:#fff}.btn-ink:hover{background:#000}
+  .btn-soft{background:var(--studio-soft);color:var(--studio-ink)}.btn-soft:hover{background:#93c9b2}
+  .btn-gl{border-color:var(--line-l);color:var(--ink)}.btn-gl:hover{border-color:var(--ink)}
+  .btn-gd{border-color:var(--line-d);color:#fff}.btn-gd:hover{border-color:#fff}
+
+  nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line-l)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .mark img{height:30px;width:auto;display:block}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:color .16s}
+  .nav-links a:hover{color:var(--g-dark)}
+  .nav-links .btn{padding:10px 20px;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+  .nav-book{display:none}
+
+  .hero{background:var(--studio-soft);line-height:0}
+  .hero-exact{display:block;width:100%;height:auto}
+
+  .hero-sub{background:var(--white);padding:30px 0}
+  .hero-sub-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+  .hero-sub p{color:var(--ink-mute);font-size:16px;max-width:50ch}
+  .hero-sub b{color:var(--ink)}
+
+  .doors-band{background:var(--white);padding:20px 0 70px}
+  .doors{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .door{position:relative;overflow:hidden;text-decoration:none;border-radius:0;padding:28px 30px 26px;min-height:190px;
+        display:flex;flex-direction:column;transition:background .26s, color .26s, border-color .26s, transform .26s, box-shadow .26s}
+  .door .ghost{position:absolute;right:10px;top:-26px;font-family:"Archivo";font-weight:900;font-size:190px;line-height:1;pointer-events:none;transition:opacity .26s,color .26s}
+  .door .room{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:color .26s}
+  .door h3{font-weight:600;font-size:26px;letter-spacing:-.01em;margin-top:9px;position:relative}
+  .door .rooms-line{margin-top:auto;padding-top:18px;font-size:14.5px;transition:color .26s}
+  .door .enter{margin-top:13px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:9px}
+  .door .enter .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+  .door-a{background:var(--studio-bg);color:var(--studio-ink);border:1px solid var(--studio-soft)}
+  .door-a .ghost{color:var(--studio-deep);opacity:.28}
+  .door-a .room{color:var(--studio-deep)}.door-a .rooms-line{color:var(--studio-mute)}
+  .door-a:hover,.door-a:focus-visible{background:var(--studio-soft);transform:translateY(-3px);outline:none}
+  .door-b{background:var(--black);color:#fff;border:1px solid var(--black)}
+  .door-b .ghost{color:var(--g);opacity:.24}
+  .door-b .room{color:var(--g)}.door-b .rooms-line{color:var(--wht-mute)}
+  .door-b:hover,.door-b:focus-visible{transform:translateY(-3px);border-color:var(--g);box-shadow:0 0 0 1px var(--g);outline:none}
+
+  .thread{background:var(--white);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l);padding:58px 0}
+  .thread .big{font-weight:600;font-size:clamp(27px,4.2vw,44px);line-height:1.12;letter-spacing:-.015em;max-width:22ch;color:var(--ink)}
+  .thread .big .e1{color:var(--studio-deep)}.thread .big .e2{color:var(--g-dark)}
+  .thread p{margin-top:20px;max-width:58ch;color:var(--ink-mute);font-size:18px}
+
+  section{scroll-margin-top:80px}
+  .band{padding:96px 0}
+
+  .band-studio{background:var(--studio-bg);color:var(--studio-ink)}
+  .studio .sec-head{color:var(--studio-deep)}
+  .studio h2{font-weight:400;font-size:clamp(30px,4.4vw,52px);letter-spacing:.015em;line-height:1.16;margin-top:16px;max-width:20ch;color:var(--studio-ink)}
+  .studio .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:44px}
+  .studio .copy p{color:var(--studio-mute);font-size:18px;line-height:1.75;max-width:52ch}
+  .studio .copy p + p{margin-top:18px}
+  .studio .tag{background:#fff;color:var(--studio-deep);border:1px solid var(--studio-soft)}
+  .studio .who{margin-top:28px;font-size:21px;color:var(--studio-ink);max-width:42ch;line-height:1.5;font-weight:400;letter-spacing:.01em}
+  .studio .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .studio .media{display:flex;flex-direction:column;gap:16px}
+  .studio .note{color:var(--studio-mute)}
+
+  .band-floor{background:var(--black);color:#fff}
+  .floor .sec-head{color:var(--g)}
+  .floor h2{font-weight:700;font-size:clamp(32px,5.2vw,58px);letter-spacing:-.025em;line-height:1.05;margin-top:16px;max-width:15ch}
+  .floor h2 .hot{color:var(--g)}
+  .floor .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:44px}
+  .floor .copy p{color:#fff;font-size:18px;line-height:1.72;max-width:52ch}
+  .floor .copy p + p{margin-top:18px}
+  .floor .tag{background:var(--black-2);color:var(--g);border:1px solid var(--line-d)}
+  .floor .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .floor .media{display:flex;flex-direction:column;gap:16px}
+  .floor .note{color:var(--wht-mute)}
+
+  .hyrox-badge{display:flex;align-items:center;gap:16px;background:var(--black-2);border:1px solid var(--line-d);border-radius:0;padding:16px 18px}
+  .hyrox-badge .stamp{flex:0 0 auto;width:66px;height:66px;border:2px solid var(--g);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1}
+  .hyrox-badge .stamp .s1{font-weight:700;font-size:8px;letter-spacing:.14em;color:var(--wht-mute)}
+  .hyrox-badge .stamp .s2{font-weight:700;font-size:15px;letter-spacing:.02em;color:#fff;margin:2px 0}
+  .hyrox-badge .stamp .s3{font-weight:700;font-size:8px;letter-spacing:.22em;color:var(--g)}
+  .hyrox-badge .bt{font-weight:700;font-size:16px;color:#fff}
+  .hyrox-badge .bd{color:var(--wht-mute);font-size:13px;margin-top:3px;line-height:1.4}
+
+  .hyrox{background:var(--black-2);border:1px solid var(--line-d);border-left:3px solid var(--g);border-radius:0;padding:22px 22px 20px}
+  .hyrox .lab{font-weight:700;font-size:18px;color:#fff}
+  .hyrox .steps{display:flex;gap:9px;margin:14px 0 4px;flex-wrap:wrap}
+  .hyrox .step{background:rgba(64,212,161,.16);color:var(--g);border-radius:0;padding:7px 12px;font-size:13px;font-weight:600}
+  .hyrox p{color:var(--wht-mute);font-size:15px;line-height:1.6;margin-top:12px}
+  .hyrox .begin{margin-top:14px;color:#bdeedb;font-weight:600;font-size:14.5px}
+
+  .band-comm{background:var(--white);color:var(--ink)}
+  .community .sec-head{color:var(--g-dark)}
+  .community h2{font-weight:600;font-size:clamp(30px,4.6vw,54px);letter-spacing:-.02em;line-height:1.08;margin-top:16px;max-width:20ch;color:var(--ink)}
+  .community h2 .thr{color:var(--g-dark)}
+  .community .intro{margin-top:20px;max-width:56ch;color:var(--ink-mute);font-size:18.5px}
+  .comm-media{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:38px}
+
+  .rave{margin-top:16px;border-radius:0;overflow:hidden;position:relative;min-height:330px;display:flex;align-items:flex-end;color:#fff}
+  .rave img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .rave .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,10,.9) 0%,rgba(8,12,10,.5) 45%,rgba(8,12,10,.25) 100%)}
+  .rave .txt{position:relative;padding:40px 40px 38px;max-width:62ch}
+  .rave .flag{display:inline-block;background:var(--g);color:#06231A;font-weight:700;font-size:12px;letter-spacing:.08em;padding:6px 12px;border-radius:0}
+  .rave h3{font-weight:700;font-size:clamp(27px,3.6vw,40px);letter-spacing:-.02em;margin-top:16px;color:#fff}
+  .rave p{margin-top:14px;max-width:46ch;color:#e6efe9;font-size:17px;line-height:1.6}
+  .rave .cta-row{margin-top:22px}
+
+  .events{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+  .ev{background:var(--white);border:1px solid var(--line-l);border-radius:0;padding:24px 22px}
+  .ev .et{font-weight:700;font-size:19px;color:var(--ink)}
+  .ev p{margin-top:9px;color:var(--ink-mute);font-size:15px;line-height:1.55}
+  .ev.t11{border-top:3px solid var(--studio-deep)}
+  .ev.sim{border-top:3px solid var(--g-dark)}
+  .ev.erg{border-top:3px solid var(--g)}
+  .follow{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+  .follow span{color:var(--ink-mute);font-size:16px}
+  .follow .btn{padding:9px 17px;font-size:14px}
+
+  .roofband{background:var(--off);padding:72px 0;border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
+  .roofband h2{font-weight:600;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;color:var(--ink)}
+  .roofband h2 .u{color:var(--studio-deep)}.roofband h2 .u2{color:var(--g-dark)}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:34px}
+  .fact{padding-left:16px;border-left:2px solid var(--line-l)}
+  .fact.p{border-left-color:var(--g)}.fact.c{border-left-color:var(--studio-deep)}
+  .fact .ft{font-weight:700;font-size:18px;color:var(--ink)}
+  .fact p{margin-top:7px;color:var(--ink-mute);font-size:15px;line-height:1.5}
+
+  .final{padding:104px 0;text-align:center;position:relative;overflow:hidden;background:var(--white)}
+  .final h2{font-weight:600;font-size:clamp(36px,5.4vw,68px);letter-spacing:-.03em;margin:0 auto;max-width:17ch;color:var(--ink)}
+  .final h2 .a{color:var(--studio-deep)}.final h2 .b{color:var(--g-dark)}
+  .final p{margin:20px auto 0;max-width:48ch;color:var(--ink-mute);font-size:19px}
+  .final .cta-row{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .final .big-11{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"Archivo";font-weight:900;font-size:min(52vw,560px);line-height:1;pointer-events:none;z-index:0;opacity:.05;white-space:nowrap}
+  .final .big-11 .a{color:var(--studio-deep)}.final .big-11 .b{color:var(--g-dark)}
+  .final .wrap{position:relative;z-index:1}
+
+  footer{background:#0C0F0E;border-top:1px solid var(--line-d);padding:58px 0 40px;color:var(--wht-mute)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+  .foot .mark img{height:26px;margin-bottom:16px}
+  .foot .tagline{font-size:18px;color:#fff;max-width:30ch;line-height:1.4;font-weight:500}
+  .foot h4{font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin:0 0 14px}
+  .foot a{color:var(--wht-mute);text-decoration:none;display:block;margin-bottom:9px;font-size:15px;transition:color .16s}
+  .foot a:hover{color:var(--g)}
+  .foot address{font-style:normal;font-size:15px;line-height:1.6}
+  .foot-base{border-top:1px solid var(--line-d);margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13.5px}
+
+  .rise{opacity:0;transform:translateY(15px)}
+  .loaded .rise{opacity:1;transform:none;transition:opacity .66s ease, transform .66s ease}
+  .loaded .d1{transition-delay:.10s}.loaded .d2{transition-delay:.20s}.loaded .d3{transition-delay:.30s}
+  :focus-visible{outline:2px solid var(--g-dark);outline-offset:3px;border-radius:0}
+
+  @media (max-width:900px){
+    .studio .grid,.floor .grid{grid-template-columns:1fr;gap:32px}
+    .comm-media{grid-template-columns:1fr}
+    .events{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr;gap:22px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    body{font-size:16px}
+    .wrap{padding:0 20px}
+    .nav-links{display:none}.nav-book{display:inline-block}
+    .band{padding:60px 0}
+    .doors{grid-template-columns:1fr;gap:14px}
+    .door{min-height:auto}.door .ghost{font-size:150px;top:-12px}
+    .facts{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .rave .txt{padding:30px 24px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rise{opacity:1;transform:none;transition:none}
+    .door,.btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="mark" href="#top"><img src="/the-stud11o/assets/logo-black.png" alt="The Stud11o"></a>
+    <div class="nav-links">
+      <a href="#studio">Studio</a>
+      <a href="#fitness">The Floor</a>
+      <a href="#community">Community</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">Contact</a>
+    </div>
+    <a class="btn btn-g nav-book" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">Book</a>
+  </div>
+</nav>
+
+<a id="top"></a>
+
+<!-- HERO — your mock, used exactly as supplied -->
+<header class="hero">
+  <img class="hero-exact" src="/the-stud11o/assets/hero-exact.jpg" alt="Fitness is for everyone — The Stud11o hero">
+</header>
+
+<section class="hero-sub">
+  <div class="wrap hero-sub-in">
+    <p><b>The Stud11o</b> is two studios under one roof, near Thirsk. Calm, restorative movement on one side. High-energy, HYROX-style training on the other.</p>
+    <p style="max-width:none">Open seven days a week, from <b>6am</b>.</p>
+  </div>
+</section>
+
+<section class="doors-band">
+  <div class="wrap">
+    <div class="doors">
+      <a class="door door-a" href="#studio">
+        <span class="ghost" aria-hidden="true">1</span>
+        <span class="room">The Studio</span>
+        <h3>Slow down to move better.</h3>
+        <span class="rooms-line">Pilates, Yoga, DanceFiit, mobility &amp; stretch</span>
+        <span class="enter"><span class="dot"></span>Step into the Studio</span>
+      </a>
+      <a class="door door-b" href="#fitness">
+        <span class="ghost" aria-hidden="true">1</span>
+        <span class="room">The Floor</span>
+        <h3>Find your limit. Then move it.</h3>
+        <span class="rooms-line">HYROX, strength, circuits, boxing, RunFiit</span>
+        <span class="enter"><span class="dot"></span>Get on the Floor</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="thread">
+  <div class="wrap">
+    <p class="big rise">You're the reason <span class="e1">1</span><span class="e2">1</span> exists.</p>
+    <p class="rise d1">Whichever room you train in, you're in good company. We celebrate the first class and the hundredth, the personal best and the simple win of showing up. The training is the reason you come. The people are the reason you stay.</p>
+  </div>
+</section>
+
+<!-- THE STUDIO -->
+<section id="studio" class="band band-studio studio">
+  <div class="wrap">
+    <p class="sec-head">The Studio</p>
+    <h2>Roll out your mat, and let the pace drop.</h2>
+    <div class="grid">
+      <div class="copy">
+        <p>The Studio is the quiet side of the building. Our classes build core strength, mobility, flexibility and control, so you move better, recover well and feel steadier in everything else you do.</p>
+        <p>Every class adapts to you, whether it's your first time on the mat or your fiftieth. No pressure to keep up, just space to move with intention.</p>
+        <ul class="tag-row" style="margin-top:24px" aria-label="Studio classes">
+          <li class="tag">Pilates</li><li class="tag">Yoga</li><li class="tag">DanceFiit</li><li class="tag">Mobility &amp; Stretch</li><li class="tag">Open Studio</li>
+        </ul>
+        <p class="who">Perfect if you want to unwind, rebuild after a break, or simply feel more at home in your body.</p>
+        <div class="cta-row">
+          <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">See the Studio timetable</a>
+          <a class="btn btn-gl" href="#visit">Book an open morning</a>
+        </div>
+      </div>
+      <div class="media">
+        <div class="frame ar45"><img loading="lazy" src="/the-stud11o/assets/studio-main.jpg" alt="A Pilates mat class at The Stud11o"></div>
+        <div class="frame arw"><img loading="lazy" src="/the-stud11o/assets/studio-secondary.jpg" alt="Members moving through a mobility session"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FLOOR -->
+<section id="fitness" class="band band-floor floor">
+  <div class="wrap">
+    <p class="sec-head">The Floor</p>
+    <h2>Sleds, sandbags, and a <span class="hot">clock</span> that doesn't care how you feel.</h2>
+    <div class="grid">
+      <div class="copy">
+        <p>This is the loud side. As an official HYROX gym, we train you for the fitness race everyone's talking about, and we host official HYROX Simulations so you can test yourself for real.</p>
+        <p>Prefer to lift, box, or just get your heart rate up? The Floor runs strength, circuits, boxing and RunFiit all week, plus Open Gym and one-to-one Personal Training when you want to focus on something specific.</p>
+        <ul class="tag-row" style="margin-top:24px" aria-label="Floor classes">
+          <li class="tag">HYROX</li><li class="tag">Strength</li><li class="tag">Circuits</li><li class="tag">Boxing</li><li class="tag">RunFiit</li><li class="tag">HYROX Lite</li><li class="tag">Open Gym</li><li class="tag">Personal Training</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">See the Floor timetable</a>
+          <a class="btn btn-gd" href="https://linktr.ee/lianneayling" target="_blank" rel="noopener">Book a HYROX Sim</a>
+        </div>
+      </div>
+      <div class="media">
+        <div class="hyrox-badge">
+          <div class="stamp" aria-hidden="true"><span class="s1">OFFICIAL</span><span class="s2">HYROX</span><span class="s3">GYM</span></div>
+          <div><div class="bt">An official HYROX gym</div><div class="bd">Train the real format and race official Sims, right here. Your licensed HYROX lockup drops into this space.</div></div>
+        </div>
+        <div class="frame ar45"><img loading="lazy" src="/the-stud11o/assets/floor-main.jpg" alt="A member pushing the sled on the HYROX track"></div>
+        <div class="hyrox">
+          <div class="lab">New to HYROX? Here's the whole race.</div>
+          <div class="steps"><span class="step">Run 1km</span><span class="step">One station</span><span class="step">Repeat &times;8</span></div>
+          <p>Eight one-kilometre runs, each split by a functional workout: sled push, sled pull, burpee broad jumps, rowing, farmer's carry, sandbag lunges, wall balls. Same race worldwide, your time on the global board.</p>
+          <p class="begin">New to it? HYROX Lite runs Thursday evenings, built for exactly this, and every workout scales to where you are today.</p>
+        </div>
+        <div class="frame arw"><img loading="lazy" src="/the-stud11o/assets/floor-secondary.jpg" alt="A member smiling mid sled push at a HYROX event"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" class="band band-comm community">
+  <div class="wrap">
+    <p class="sec-head">Community</p>
+    <h2>The best bit happens <span class="thr">between</span> the reps.</h2>
+    <p class="intro">We throw the kind of events that don't feel like the gym. Our members show up for each other, and honestly, they're the whole point.</p>
+
+    <div class="comm-media">
+      <div class="frame arwide"><img loading="lazy" src="/the-stud11o/assets/community-lead.jpg" alt="An outdoor group class with arms raised under a dramatic sky" style="object-position:center 58%"></div>
+      <div class="frame"><img loading="lazy" src="/the-stud11o/assets/community-accent.jpg" alt="A member on the rowing erg at an outdoor event"></div>
+    </div>
+
+    <div class="rave">
+      <img src="/the-stud11o/assets/watt-rave.jpg" alt="Watt bikes and rowers on the gym floor beneath the club banners" style="object-position:center 40%">
+      <div class="veil"></div>
+      <div class="txt">
+        <span class="flag">SIGNATURE NIGHT</span>
+        <h3>Watt Rave, with DJ Josh.</h3>
+        <p>One epic Friday night. The lights drop, DJ Josh takes over, and the whole room climbs onto the Watt bikes to ride to the beat. Two rides, 6pm and 7pm. Part workout, part night out, entirely The Stud11o.</p>
+        <div class="cta-row"><a class="btn btn-g" href="https://linktr.ee/lianneayling" target="_blank" rel="noopener">See what's on</a></div>
+      </div>
+    </div>
+
+    <div class="events">
+      <div class="ev t11"><div class="et">The 11</div><p>Our own hybrid race, now in its second season. Grind through the Arena, Forge and Lift formats, with waves from 9am. This one's ours.</p></div>
+      <div class="ev sim"><div class="et">HYROX Sim</div><p>Official simulations in every format: solo, pairs, relay, full and half. Race the real thing on home turf, timed and scored.</p></div>
+      <div class="ev erg"><div class="et">Erg Mania</div><p>Teams of three against the clock on the bike, row and ski, finishing on max wall balls. Equal parts grit and belly laughs.</p></div>
+    </div>
+
+    <div class="follow">
+      <span>Most of the magic lands on Instagram first.</span>
+      <a class="btn btn-gl" href="https://www.instagram.com/the_stud11o/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-gl" href="https://www.facebook.com/thestud11o" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn btn-gl" href="https://www.youtube.com/channel/UCqAwWm2Q9c-a2q-vuuz-LkQ" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit" class="roofband">
+  <div class="wrap">
+    <h2>Two rooms. <span class="u">One</span> <span class="u2">roof</span>. No excuses left.</h2>
+    <div class="facts">
+      <div class="fact p"><div class="ft">Seven days, from 6am</div><p>Classes every day of the week, early enough to train before work.</p></div>
+      <div class="fact c"><div class="ft">Free parking on site</div><p>Right outside the door at Sowerby Business Park. Roll in, roll out.</p></div>
+      <div class="fact p"><div class="ft">Your own Stud11o app</div><p>Book classes, manage your membership and train on demand, all in one place.</p></div>
+      <div class="fact c"><div class="ft">Every session adapts</div><p>From first-timer to regular, each class scales to the right level for you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="big-11" aria-hidden="true"><span class="a">1</span><span class="b">1</span></div>
+  <div class="wrap">
+    <h2>Two rooms. One roof. Come find <span class="a">your</span><span class="b">s</span>.</h2>
+    <p>Book your first class, or just drop by an open morning to see if it's for you. Either way, we can't wait to meet you.</p>
+    <div class="cta-row">
+      <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">Book your first class</a>
+      <a class="btn btn-soft" href="#visit">Book an open morning</a>
+      <a class="btn btn-gl" href="https://apps.apple.com/gb/app/the-stud11o/id6473147715" target="_blank" rel="noopener">Get the app</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot">
+        <a class="mark" href="#top"><img src="/the-stud11o/assets/logo-white.png" alt="The Stud11o"></a>
+        <p class="tagline">We move. We inspire. We grow. Together.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <address>Unit 11, Sowerby Business Park,<br>Cedar Road, YO7 3FF<br>Fit with Lianne</address>
+      </div>
+      <div>
+        <h4>Get started</h4>
+        <a href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">Book a class</a>
+        <a href="https://linktr.ee/lianneayling" target="_blank" rel="noopener">HYROX Sims &amp; events</a>
+        <a href="https://apps.apple.com/gb/app/the-stud11o/id6473147715" target="_blank" rel="noopener">Download the app (iOS)</a>
+        <a href="https://play.google.com/store/apps/details?id=com.goteamup.app.fitwithlianne" target="_blank" rel="noopener">Download the app (Android)</a>
+      </div>
+    </div>
+    <div class="foot-base"><span>© 2026 The Stud11o. All rights reserved.</span><span>Inclusive fitness for every body.</span></div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ document.body.classList.add('loaded'); return; }
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.body.classList.add('loaded'); }); });
+  })();
+</script>
+</body>
+</html>
