@@ -141,6 +141,18 @@
   .comm-media{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:38px;aspect-ratio:2.5/1}
   .comm-media .frame{height:100%}
 
+  .band-store{background:var(--black);color:#fff}
+  .store .sec-head{color:var(--g)}
+  .store h2{font-weight:700;font-size:clamp(30px,4.4vw,52px);letter-spacing:-.02em;line-height:1.1;margin-top:16px;max-width:18ch}
+  .store .intro{margin-top:18px;max-width:56ch;color:var(--wht-mute);font-size:18px}
+  .products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .prod-frame{aspect-ratio:4/5;border:1px solid var(--line-d)}
+  .prod-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .28s ease}
+  .prod-frame .p-back{opacity:0}
+  .prod:hover .p-back,.prod:focus-within .p-back{opacity:1}
+  .prod-name{margin-top:16px;font-weight:700;font-size:16px;color:#fff}
+  .prod-desc{margin-top:4px;color:var(--wht-mute);font-size:14px}
+
   .rave{margin-top:16px;border-radius:0;overflow:hidden;position:relative;min-height:330px;display:flex;align-items:flex-end;color:#fff}
   .rave img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .rave .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,10,.9) 0%,rgba(8,12,10,.5) 45%,rgba(8,12,10,.25) 100%)}
@@ -201,6 +213,7 @@
     .comm-media{grid-template-columns:1fr;aspect-ratio:auto}
     .comm-media .frame{height:auto;aspect-ratio:4/3}
     .events{grid-template-columns:1fr}
+    .products{grid-template-columns:1fr}
     .facts{grid-template-columns:1fr 1fr;gap:22px}
     .foot-grid{grid-template-columns:1fr 1fr}
   }
@@ -231,6 +244,7 @@
       <a href="#studio">Studio</a>
       <a href="#fitness">The Floor</a>
       <a href="#community">Community</a>
+      <a href="#shop">Shop</a>
       <a href="#visit">Visit</a>
       <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">Contact</a>
     </div>
@@ -377,6 +391,43 @@
       <a class="btn btn-gl" href="https://www.instagram.com/the_stud11o/" target="_blank" rel="noopener">Instagram</a>
       <a class="btn btn-gl" href="https://www.facebook.com/thestud11o" target="_blank" rel="noopener">Facebook</a>
       <a class="btn btn-gl" href="https://www.youtube.com/channel/UCqAwWm2Q9c-a2q-vuuz-LkQ" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="band band-store store">
+  <div class="wrap">
+    <p class="sec-head">Shop</p>
+    <h2>Kit that's built for both rooms.</h2>
+    <p class="intro">Studio-branded tees and a shaker built for wherever you train. Ask at reception or drop us a message to grab yours.</p>
+    <div class="products">
+      <div class="prod">
+        <div class="frame prod-frame">
+          <img class="p-front" loading="lazy" src="/the-stud11o/assets/store-men-top1.png" alt="Men's Stud11o tee, front">
+          <img class="p-back" loading="lazy" src="/the-stud11o/assets/store-men-top2.png" alt="Men's Stud11o tee, back">
+        </div>
+        <div class="prod-name">Men's Stud11o Tee</div>
+        <p class="prod-desc">Performance fit, printed logo.</p>
+      </div>
+      <div class="prod">
+        <div class="frame prod-frame">
+          <img class="p-front" loading="lazy" src="/the-stud11o/assets/store-wmn-top1.png" alt="Women's Stud11o crop tee, front">
+          <img class="p-back" loading="lazy" src="/the-stud11o/assets/store-wmn-top2.png" alt="Women's Stud11o crop tee, back">
+        </div>
+        <div class="prod-name">Women's Crop Tee</div>
+        <p class="prod-desc">Relaxed crop, embroidered logo.</p>
+      </div>
+      <div class="prod">
+        <div class="frame prod-frame">
+          <img class="p-front" loading="lazy" src="/the-stud11o/assets/store-bottle.png" alt="Stud11o shaker bottle">
+        </div>
+        <div class="prod-name">Studio Shaker</div>
+        <p class="prod-desc">700ml, leak-proof lid.</p>
+      </div>
+    </div>
+    <div class="cta-row" style="margin-top:34px">
+      <a class="btn btn-g" href="https://www.instagram.com/the_stud11o/" target="_blank" rel="noopener">Ask about kit on Instagram</a>
     </div>
   </div>
 </section>
