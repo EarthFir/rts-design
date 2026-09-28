@@ -168,6 +168,23 @@
   .rave p{margin-top:14px;max-width:46ch;color:#e6efe9;font-size:17px;line-height:1.6}
   .rave .cta-row{margin-top:22px}
 
+  .testimonials{margin-top:16px;border-radius:0;overflow:hidden;position:relative;min-height:330px;background:var(--g);color:#06231A}
+  .test-slide{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+              padding:56px 100px;opacity:0;visibility:hidden;transition:opacity .45s ease}
+  .test-slide p{margin:0}
+  .test-slide.is-active{opacity:1;visibility:visible}
+  .test-slide p{font-weight:600;font-size:clamp(18px,2.2vw,25px);line-height:1.55;max-width:60ch;letter-spacing:-.01em}
+  .test-slide cite{display:block;margin-top:22px;font-style:normal;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#06231A;opacity:.72}
+  .test-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+              border:1.5px solid rgba(6,35,26,.32);background:transparent;color:#06231A;font-size:20px;line-height:1;
+              cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .16s,border-color .16s}
+  .test-arrow:hover{background:rgba(6,35,26,.12);border-color:#06231A}
+  .test-prev{left:20px}
+  .test-next{right:20px}
+  .test-dots{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;gap:8px;z-index:1}
+  .test-dot{width:8px;height:8px;border-radius:50%;background:rgba(6,35,26,.32);border:none;padding:0;cursor:pointer;transition:background .16s,transform .16s}
+  .test-dot.is-active{background:#06231A;transform:scale(1.25)}
+
   .events{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
   .ev{background:var(--white);border:1px solid var(--line-l);border-radius:0;padding:24px 22px}
   .ev .et{font-weight:700;font-size:19px;color:var(--ink)}
@@ -236,6 +253,9 @@
     .facts{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr}
     .rave .txt{padding:30px 24px}
+    .test-slide{padding:52px 56px}
+    .test-prev{left:8px}
+    .test-next{right:8px}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -385,6 +405,23 @@
       </div>
     </div>
 
+    <div class="testimonials" role="region" aria-label="Member testimonials" aria-roledescription="carousel">
+      <blockquote class="test-slide is-active">
+        <p>&ldquo;Well I can do a 5k since joining your gym which I am amazed by! I'm so much fitter, toned and my blood pressure is no longer high so it's a win win for me! I can do things now that I never thought I could! And I push myself so much more now! So thank you for that and to all the members who inspire me to do my best.&rdquo;</p>
+        <cite>Bec Hale</cite>
+      </blockquote>
+      <blockquote class="test-slide">
+        <p>&ldquo;I've had a few PBs with running since doing HYROX! And managed a 12k run which was something I'd of NEVER been able to do before.&rdquo;</p>
+        <cite>Hannah Leanne</cite>
+      </blockquote>
+      <button type="button" class="test-arrow test-prev" aria-label="Previous testimonial">&#8249;</button>
+      <button type="button" class="test-arrow test-next" aria-label="Next testimonial">&#8250;</button>
+      <div class="test-dots">
+        <button type="button" class="test-dot is-active" aria-label="Show testimonial 1"></button>
+        <button type="button" class="test-dot" aria-label="Show testimonial 2"></button>
+      </div>
+    </div>
+
     <div class="events">
       <div class="ev t11"><div class="et">The 11</div><p>Our own hybrid race, now in its second season. Grind through the Arena, Forge and Lift formats, with waves from 9am. This one's ours.</p></div>
       <div class="ev sim"><div class="et">HYROX Sim</div><p>Official simulations in every format: solo, pairs, relay, full and half. Race the real thing on home turf, timed and scored.</p></div>
@@ -527,6 +564,24 @@
     });
 
     activate('studio');
+  })();
+
+  (function(){
+    var root = document.querySelector('.testimonials');
+    if(!root) return;
+    var slides = root.querySelectorAll('.test-slide');
+    var dots = root.querySelectorAll('.test-dot');
+    var current = 0;
+
+    function show(i){
+      current = (i + slides.length) % slides.length;
+      slides.forEach(function(s, idx){ s.classList.toggle('is-active', idx === current); });
+      dots.forEach(function(d, idx){ d.classList.toggle('is-active', idx === current); });
+    }
+
+    root.querySelector('.test-prev').addEventListener('click', function(){ show(current - 1); });
+    root.querySelector('.test-next').addEventListener('click', function(){ show(current + 1); });
+    dots.forEach(function(d, idx){ d.addEventListener('click', function(){ show(idx); }); });
   })();
 </script>
 </body>
