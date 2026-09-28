@@ -67,53 +67,25 @@
   .hero-sub p{color:var(--ink-mute);font-size:16px;max-width:50ch}
   .hero-sub b{color:var(--ink)}
 
-  .doors-band{background:var(--white);padding:20px 0 70px;position:relative;z-index:1}
+  .doors-band{background:var(--white);padding:40px 0 24px;position:relative;z-index:1}
   html.has-panel-toggle .doors-band{padding-bottom:0}
-  .doors{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .door{position:relative;overflow:hidden;text-decoration:none;border-radius:0;padding:28px 30px 26px;min-height:190px;
-        display:flex;flex-direction:column;transition:background .26s, color .26s, border-color .26s, transform .26s, box-shadow .26s}
-  .door .ghost{position:absolute;right:10px;top:-26px;font-family:"Archivo";font-weight:900;font-size:190px;line-height:1;pointer-events:none;transition:opacity .26s,color .26s}
-  .door .room{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:color .26s}
-  .door h3{font-weight:600;font-size:26px;letter-spacing:-.01em;margin-top:9px;position:relative}
-  .door .rooms-line{margin-top:auto;padding-top:18px;font-size:14.5px;transition:color .26s}
-  .door .enter{margin-top:13px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:9px}
-  .door .enter .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
-  .door-a{background:var(--studio-bg);color:var(--studio-ink);border:1px solid var(--studio-soft)}
-  .door-a .ghost{color:var(--studio-deep);opacity:.28}
-  .door-a .room{color:var(--studio-deep)}.door-a .rooms-line{color:var(--studio-mute)}
-  .door-a:hover,.door-a:focus-visible{background:var(--studio-soft);outline:none}
-  .door-b{background:var(--black);color:#fff;border:1px solid var(--black)}
-  .door-b .ghost{color:var(--g);opacity:.24}
-  .door-b .room{color:var(--g)}.door-b .rooms-line{color:var(--wht-mute)}
-  .door-b:hover,.door-b:focus-visible{border-color:var(--g);box-shadow:0 0 0 1px var(--g);outline:none}
-  .door .now{margin-top:13px;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:none;align-items:center;gap:8px}
-  .door .now .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
-  html.has-panel-toggle .door.is-active .enter{display:none}
-  html.has-panel-toggle .door.is-active .now{display:inline-flex}
-  html.has-panel-toggle .door.is-active{z-index:2;outline:2px solid transparent;outline-offset:-2px}
-  .door-a.is-active{background:var(--studio-bg);outline-color:var(--studio-deep)}
-  .door-a.is-active .now{color:var(--studio-deep)}
-  .door-b.is-active{border-color:var(--g);outline-color:var(--g)}
-  .door-b.is-active .now{color:var(--g)}
-  html.has-panel-toggle .door{cursor:pointer}
-  html.has-panel-toggle .panel{display:none;position:relative;z-index:0;animation:panelFade .32s ease}
+  .tabs-row{display:flex;align-items:flex-end}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;text-decoration:none;font-family:inherit;
+       display:inline-flex;align-items:center;position:relative;z-index:1;
+       padding:20px 48px 18px 32px;font-weight:800;font-size:clamp(18px,2.5vw,28px);letter-spacing:-.01em;text-transform:uppercase;
+       transition:padding .26s ease,box-shadow .26s ease,opacity .26s ease}
+  .tab-a{background:var(--studio-bg);color:var(--studio-ink)}
+  .tab-b{background:var(--black);color:var(--g);margin-left:-36px}
+  .tab:not(.is-active){opacity:.82}
+  .tab:hover{opacity:1}
+  .tab.is-active{z-index:3;padding-top:32px}
+  .tab-a.is-active{box-shadow:0 -18px 28px -8px rgba(60,122,94,.4)}
+  .tab-b.is-active{box-shadow:0 -20px 32px -6px rgba(15,19,18,.55)}
+  html.has-panel-toggle .panel{display:none;animation:panelFade .32s ease}
   html.has-panel-toggle .panel.is-active{display:block}
   html.has-panel-toggle .band-studio.panel{padding-top:64px}
   html.has-panel-toggle .band-floor.panel{padding-top:64px}
   @keyframes panelFade{from{opacity:0}to{opacity:1}}
-
-  /* Combined card+panel shape: a single notched silhouette instead of a card floating above a rectangle.
-     Uses SVG (not clip-path) because Chrome clips a filter's drop-shadow to the clip-path box, hiding it entirely.
-     Point coordinates are written by JS to stay pixel-accurate against the door's real position. */
-  .tab-shape{position:absolute;top:20px;left:0;z-index:0;display:none;pointer-events:none;overflow:visible}
-  html.has-panel-toggle .doors-band[data-active="studio"] .tab-shape-a,
-  html.has-panel-toggle .doors-band[data-active="fitness"] .tab-shape-b{display:block}
-  .tab-shape-a{filter:drop-shadow(0 -22px 30px rgba(15,19,18,.32))}
-  .tab-shape-b{filter:drop-shadow(0 -22px 34px rgba(15,19,18,.45))}
-  .tab-shape-a .tab-outline{fill:var(--studio-deep)}
-  .tab-shape-a .tab-fill{fill:var(--studio-bg)}
-  .tab-shape-b .tab-outline{fill:var(--g)}
-  .tab-shape-b .tab-fill{fill:var(--black)}
 
   .thread{background:var(--white);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l);padding:58px 0}
   .thread .big{font-weight:600;font-size:clamp(27px,4.2vw,44px);line-height:1.12;letter-spacing:-.015em;max-width:22ch;color:var(--ink)}
@@ -241,8 +213,6 @@
   :focus-visible{outline:2px solid var(--g-dark);outline-offset:3px;border-radius:0}
 
   @media (max-width:900px){
-    .tab-shape{display:none!important}
-    html.has-panel-toggle .door.is-active{box-shadow:0 -22px 30px -16px rgba(15,19,18,.35)}
     .studio .grid,.floor .grid{grid-template-columns:1fr;gap:32px}
     .studio .media .frame,.floor .media .imgs .frame{aspect-ratio:4/5;min-height:0}
     .floor .media,.floor .media .imgs{height:auto;min-height:0}
@@ -260,8 +230,9 @@
     .band{padding:60px 0}
     .hero-copy{position:static;height:auto;background:var(--g);padding:26px 22px 32px}
     .hero-head{margin-top:20px;font-size:clamp(41px,13.2vw,62px)}
-    .doors{grid-template-columns:1fr;gap:14px}
-    .door{min-height:auto}.door .ghost{font-size:150px;top:-12px}
+    .tab{padding:14px 26px 13px 18px;font-size:16px}
+    .tab-b{margin-left:-18px}
+    .tab.is-active{padding-top:22px}
     .facts{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr}
     .rave .txt{padding:30px 24px}
@@ -269,7 +240,7 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .rise{opacity:1;transform:none;transition:none}
-    .door,.btn{transition:none}
+    .tab,.btn{transition:none}
     .panel{animation:none!important}
   }
 </style>
@@ -281,7 +252,7 @@
     <a class="mark" href="#top"><img src="/the-stud11o/assets/logo-black.png" alt="The Stud11o"></a>
     <div class="nav-links">
       <a href="#studio" data-panel="studio">Studio</a>
-      <a href="#fitness" data-panel="fitness">The Floor</a>
+      <a href="#hyrox" data-panel="hyrox">Hyrox</a>
       <a href="#community">Community</a>
       <a href="#shop">Shop</a>
       <a href="#visit">Visit</a>
@@ -320,26 +291,10 @@
 </section>
 
 <section class="doors-band">
-  <svg class="tab-shape tab-shape-a" aria-hidden="true"><polygon class="tab-outline"></polygon><polygon class="tab-fill"></polygon></svg>
-  <svg class="tab-shape tab-shape-b" aria-hidden="true"><polygon class="tab-outline"></polygon><polygon class="tab-fill"></polygon></svg>
   <div class="wrap">
-    <div class="doors">
-      <a class="door door-a" href="#studio" data-panel="studio" role="tab" aria-selected="true" aria-controls="studio">
-        <span class="ghost" aria-hidden="true">1</span>
-        <span class="room">The Studio</span>
-        <h3>Slow down to move better.</h3>
-        <span class="rooms-line">Pilates, Yoga, DanceFiit, mobility &amp; stretch</span>
-        <span class="enter"><span class="dot"></span>Step into the Studio</span>
-        <span class="now"><span class="dot"></span>Viewing the Studio</span>
-      </a>
-      <a class="door door-b" href="#fitness" data-panel="fitness" role="tab" aria-selected="false" aria-controls="fitness">
-        <span class="ghost" aria-hidden="true">1</span>
-        <span class="room">The Floor</span>
-        <h3>Find your limit. Then move it.</h3>
-        <span class="rooms-line">HYROX, strength, circuits, boxing, RunFiit</span>
-        <span class="enter"><span class="dot"></span>Get on the Floor</span>
-        <span class="now"><span class="dot"></span>Viewing the Floor</span>
-      </a>
+    <div class="tabs-row">
+      <a class="tab tab-a" href="#studio" data-panel="studio" role="tab" aria-selected="true" aria-controls="studio">The Studio</a>
+      <a class="tab tab-b" href="#hyrox" data-panel="hyrox" role="tab" aria-selected="false" aria-controls="hyrox">Hyrox</a>
     </div>
   </div>
 </section>
@@ -370,20 +325,20 @@
   </div>
 </section>
 
-<!-- THE FLOOR -->
-<section id="fitness" class="band band-floor floor panel" data-panel="fitness">
+<!-- HYROX -->
+<section id="hyrox" class="band band-floor floor panel" data-panel="hyrox">
   <div class="wrap">
-    <p class="sec-head">The Floor</p>
+    <p class="sec-head">Hyrox</p>
     <h2>Sleds, sandbags, and a <span class="hot">clock</span> that doesn't care how you feel.</h2>
     <div class="grid">
       <div class="copy">
         <p>This is the loud side. As an official HYROX gym, we train you for the fitness race everyone's talking about, and we host official HYROX Simulations so you can test yourself for real.</p>
-        <p>Prefer to lift, box, or just get your heart rate up? The Floor runs strength, circuits, boxing and RunFiit all week, plus Open Gym and one-to-one Personal Training when you want to focus on something specific.</p>
-        <ul class="tag-row" style="margin-top:24px" aria-label="Floor classes">
+        <p>Prefer to lift, box, or just get your heart rate up? Hyrox runs strength, circuits, boxing and RunFiit all week, plus Open Gym and one-to-one Personal Training when you want to focus on something specific.</p>
+        <ul class="tag-row" style="margin-top:24px" aria-label="Hyrox classes">
           <li class="tag">HYROX</li><li class="tag">Strength</li><li class="tag">Circuits</li><li class="tag">Boxing</li><li class="tag">RunFiit</li><li class="tag">HYROX Lite</li><li class="tag">Open Gym</li><li class="tag">Personal Training</li>
         </ul>
         <div class="cta-row">
-          <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">See the Floor timetable</a>
+          <a class="btn btn-g" href="https://goteamup.com/p/7770972-the-stud11o-by-fit-with-l/c/schedule" target="_blank" rel="noopener">See the Hyrox timetable</a>
           <a class="btn btn-gd" href="https://linktr.ee/lianneayling" target="_blank" rel="noopener">Book a HYROX Sim</a>
         </div>
         <div class="hyrox-badge">
@@ -540,53 +495,19 @@
   })();
 
   (function(){
-    var doors = document.querySelectorAll('.door[data-panel]');
+    var tabs = document.querySelectorAll('.tab[data-panel]');
     var panels = document.querySelectorAll('.panel[data-panel]');
     var links = document.querySelectorAll('a[data-panel]');
-    if(!doors.length || !panels.length) return;
+    if(!tabs.length || !panels.length) return;
 
     document.documentElement.classList.add('has-panel-toggle');
     var doorsBand = document.querySelector('.doors-band');
-    var tabShapeA = document.querySelector('.tab-shape-a');
-    var tabShapeB = document.querySelector('.tab-shape-b');
-    var doorA = document.querySelector('.door-a');
-    var doorB = document.querySelector('.door-b');
-
-    function updateTabShapes(){
-      if(!doorsBand || !tabShapeA || !tabShapeB || !doorA || !doorB) return;
-      if(window.innerWidth <= 900) return;
-      var bandRect = doorsBand.getBoundingClientRect();
-      var W = bandRect.width;
-      var TOP = 20, BLEED = 32, INSET = 2;
-      var H = (bandRect.height - TOP) + BLEED;
-      var step = H - BLEED;
-
-      function pts(list){ return list.map(function(p){ return p[0] + ',' + p[1]; }).join(' '); }
-
-      function setShape(svg, doorRect){
-        var x1 = doorRect.left - bandRect.left;
-        var x2 = doorRect.right - bandRect.left;
-        svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-        svg.setAttribute('width', W);
-        svg.setAttribute('height', H);
-        svg.querySelector('.tab-outline').setAttribute('points', pts([
-          [x1,0],[x2,0],[x2,step],[W,step],[W,H],[0,H],[0,step],[x1,step]
-        ]));
-        var si = step + INSET;
-        svg.querySelector('.tab-fill').setAttribute('points', pts([
-          [x1+INSET,INSET],[x2-INSET,INSET],[x2-INSET,si],[W-INSET,si],[W-INSET,H],[INSET,H],[INSET,si],[x1+INSET,si]
-        ]));
-      }
-
-      setShape(tabShapeA, doorA.getBoundingClientRect());
-      setShape(tabShapeB, doorB.getBoundingClientRect());
-    }
 
     function activate(name){
-      doors.forEach(function(d){
-        var on = d.dataset.panel === name;
-        d.classList.toggle('is-active', on);
-        d.setAttribute('aria-selected', on ? 'true' : 'false');
+      tabs.forEach(function(t){
+        var on = t.dataset.panel === name;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
       });
       panels.forEach(function(p){
         p.classList.toggle('is-active', p.dataset.panel === name);
@@ -598,16 +519,14 @@
       a.addEventListener('click', function(e){
         e.preventDefault();
         activate(a.dataset.panel);
-        if(!a.classList.contains('door')){
+        if(!a.classList.contains('tab')){
           var target = document.querySelector('#' + a.dataset.panel);
           if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
         }
       });
     });
 
-    updateTabShapes();
     activate('studio');
-    window.addEventListener('resize', updateTabShapes);
   })();
 </script>
 </body>
